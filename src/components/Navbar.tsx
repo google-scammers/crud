@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 
-const navigation = ['회원가입', '로그인', '게시판'];
-
 export const Navbar = () => {
   return (
     <nav>
