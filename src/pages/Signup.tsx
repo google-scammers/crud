@@ -1,5 +1,12 @@
+import AuthInput from 'components/AuthInput';
+
 function Signup() {
-  return <div>sign up</div>;
+  return (
+    <div>
+      Sign up
+      <AuthInput />
+    </div>
+  );
 }
 
 export default Signup;
