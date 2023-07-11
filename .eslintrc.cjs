@@ -50,11 +50,11 @@ module.exports = {
                         group: 'internal',
                     },
                     {
-                        pattern: 'components/*',
+                        pattern: 'pages/*',
                         group: 'internal',
                     },
                     {
-                        pattern: 'pages/*',
+                        pattern: 'components/*',
                         group: 'internal',
                     },
                 ],
