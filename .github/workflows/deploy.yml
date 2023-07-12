@@ -35,8 +35,8 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-      - name: Set up Yarn
-        uses: borales/actions-yarn@v4
+      - name: Install Yarn
+        run: npm install -g yarn
       - name: Install dependencies
         run: yarn install
       - name: Build
