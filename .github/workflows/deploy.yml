@@ -3,8 +3,6 @@ name: Deploy static content to Pages
 
 on:
   # 기본 브랜치에 대한 푸시 이벤트 발생 시 실행
-  pull_request:
-    types: [closed]
   push:
     branches: [develop]
 
