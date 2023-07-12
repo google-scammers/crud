@@ -4,6 +4,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/google-scammers/crud/",
+  base: "/crud/",
   plugins: [react(), tsconfigPaths()],
 });

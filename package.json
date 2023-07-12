@@ -35,5 +35,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
     "vite-tsconfig-paths": "^4.2.0"
-  }
+  },
+  "homepage": "https://google-scammers.github.io/crud/"
 }
