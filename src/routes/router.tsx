@@ -7,7 +7,7 @@ import Signup from 'pages/Signup';
 
 export const router = createBrowserRouter([
   {
-    path: '',
+    path: 'crud',
     element: <Home />,
     children: [
       {
