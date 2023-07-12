@@ -4,7 +4,7 @@ const AuthForm = () => {
     return (
       <Section>
         <Wrap>
-          <Title> Login - test </Title>
+          <Title> Login - test - test </Title>
 
           <Form>
 
