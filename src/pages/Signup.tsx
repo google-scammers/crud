@@ -11,7 +11,7 @@ const Signup = () => {
         type="test"
         label="test"
         id="test"
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setTest(e.target.value);
         }}
         value={test}
