@@ -1,11 +1,11 @@
 type AuthInputProps = {
-  type : string;
-  label : string
-  id : string
-  onChange : React.ChangeEventHandler<HTMLInputElement>
-  name : string
-  value : string
-}
+  type: string;
+  label: string;
+  id: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  name: string;
+  value: string;
+};
 
 export const AuthInput = ({
   type,
@@ -14,7 +14,7 @@ export const AuthInput = ({
   onChange,
   name,
   value,
-}:AuthInputProps) => {
+}: AuthInputProps) => {
   return (
     <label htmlFor={id} className="flex flex-col">
       {label}
@@ -27,8 +27,5 @@ export const AuthInput = ({
         value={value}
       />
     </label>
-  )
-}
-
-
-
+  );
+};
