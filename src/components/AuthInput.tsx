@@ -43,6 +43,7 @@ const Input = styled.input`
 `;
 
 const BottomText = styled.p`
+  width: 100%;
   color: ${colors.red600};
   margin-top: 4px;
   display: inline-block;
@@ -61,7 +62,7 @@ export const AuthInput = ({
 }: AuthInputProps) => {
   return (
     <Container>
-      <Label htmlFor={id} className="flex flex-col">
+      <Label htmlFor={id}>
         {label}
         <Input
           type={type}

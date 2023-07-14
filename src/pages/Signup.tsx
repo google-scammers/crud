@@ -14,6 +14,7 @@ const Signup = () => {
         onChange={onChange}
         value={inputValue}
         name="test"
+        bottomText="waring"
       />
     </div>
   );
