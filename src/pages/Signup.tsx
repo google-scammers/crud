@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useInput } from 'hooks/useInput';
 
 import { AuthInput } from 'components/AuthInput';
 
 const Signup = () => {
-  const [test, setTest] = useState('');
+  const [inputValue, onChange] = useInput('');
   return (
     <div>
       Sign up
@@ -11,10 +11,8 @@ const Signup = () => {
         type="test"
         label="test"
         id="test"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setTest(e.target.value);
-        }}
-        value={test}
+        onChange={onChange}
+        value={inputValue}
         name="test"
       />
     </div>
