@@ -9,6 +9,7 @@ type AuthInputProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   name: string;
   value: string;
+  bottomText: string;
 };
 
 const Container = styled.div`
@@ -41,6 +42,14 @@ const Input = styled.input`
   }
 `;
 
+const BottomText = styled.p`
+  color: ${colors.red600};
+  margin-top: 4px;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 15px;
+`;
+
 export const AuthInput = ({
   type,
   label,
@@ -48,6 +57,7 @@ export const AuthInput = ({
   onChange,
   name,
   value,
+  bottomText,
 }: AuthInputProps) => {
   return (
     <Container>
@@ -62,6 +72,7 @@ export const AuthInput = ({
           value={value}
         />
       </Label>
+      <BottomText>{bottomText}</BottomText>
     </Container>
   );
 };
