@@ -3,7 +3,7 @@ import { useInput } from 'hooks/useInput';
 import { AuthInput } from 'components/AuthInput';
 
 const Signup = () => {
-  const [inputValue, onChange] = useInput('');
+  const { inputValue, onChange } = useInput('');
   return (
     <div>
       Sign up
