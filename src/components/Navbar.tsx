@@ -11,7 +11,7 @@ export const Navbar = () => {
           <Link to={'login'}>로그인</Link>
         </li>
         <li>
-          <Link to={''}>게시판</Link>
+          <Link to={'board'}>게시판</Link>
         </li>
       </ul>
     </nav>
