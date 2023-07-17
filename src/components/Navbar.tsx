@@ -29,6 +29,9 @@ export const Navbar = () => {
         <Link to="">CRUD</Link>
       </div>
       <ul>
+          <li>
+              <Link to={'write'}>글쓰기</Link>
+          </li>
         <li>
           <Link to={'login'}>로그인</Link>
         </li>
