@@ -21,7 +21,7 @@ const StyledButton = styled.button<ButtonStyle<ButtonSizeUnit>>`
       : props.height};
   cursor: pointer;
   border-radius: 5px;
-  padding: ${(props) => props.padding}
+  padding: ${(props) => props.padding};
   color: ${colors.white};
   background-color: ${colors.blue500};
   &:hover {
