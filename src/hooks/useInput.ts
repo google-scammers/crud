@@ -55,5 +55,5 @@ export const useInput = (initialValue: string, validationOption: string) => {
     updateValidationStatus(value, setValidation);
   };
 
-  return [inputValue, onChange, validation] as const;
+  return { inputValue, onChange, validation };
 };

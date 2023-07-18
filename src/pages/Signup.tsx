@@ -3,10 +3,11 @@ import { useInput } from 'hooks/useInput';
 import { AuthInput } from 'components/AuthInput';
 
 const Signup = () => {
-  const [EmailInputValue, EmailOnChange, EmailValidation] = useInput(
-    '',
-    'email'
-  );
+  const {
+    inputValue: EmailInputValue,
+    onChange: EmailOnChange,
+    validation: EmailValidation,
+  } = useInput('', 'email');
   return (
     <div>
       Sign up
