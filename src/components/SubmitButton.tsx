@@ -30,7 +30,6 @@ const StyledButton = styled.button<ButtonStyle<ButtonSizeUnit>>`
 `;
 
 type Props = {
-  handleSubmit: FormEventHandler<HTMLButtonElement>;
   text: string;
 } & ButtonStyle<ButtonSizeUnit>;
 
