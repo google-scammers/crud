@@ -1,5 +1,15 @@
 import { useState } from 'react';
 
+type UpdateValidationStatus = (
+  value: string,
+  setValidation: React.Dispatch<
+    React.SetStateAction<{
+      isSuccess: boolean;
+      errorMessage: string;
+    }>
+  >
+) => void;
+
 export const useInput = (initialValue: string, validationOption: string) => {
   let regex: RegExp;
   let errorMessage: string;
@@ -13,14 +23,9 @@ export const useInput = (initialValue: string, validationOption: string) => {
     errorMessage = '8자 이상으로 작성해주세요.';
   }
 
-  const updateValidationStatus = (
-    value: string,
-    setValidation: React.Dispatch<
-      React.SetStateAction<{
-        isSuccess: boolean;
-        errorMessage: string;
-      }>
-    >
+  const updateValidationStatus: UpdateValidationStatus = (
+    value,
+    setValidation
   ) => {
     const validationRegex = () => regex.test(value);
     if (value.length === 0) {
