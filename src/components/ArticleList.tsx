@@ -25,6 +25,11 @@ const List = styled.li`
   border: 1px solid #fff;
   display: flex;
   align-items: end;
+  &:hover {
+    transform: translateY(-7px);
+  }
+  transition: 0.5s;
+  cursor: pointer;
 `;
 
 const ListInfro = styled.div`
@@ -36,6 +41,8 @@ const ListInfro = styled.div`
   background-color: rgba(0, 0, 0, 20%);
   width: 100%;
   padding: 12px 13px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 const Title = styled.h3`
