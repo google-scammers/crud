@@ -4,12 +4,13 @@ import { styled } from 'styled-components';
 import { colors } from 'constants/colors';
 
 type ButtonSizeUnit = string | number;
-type ButtonSize<T> = {
+type ButtonStyle<T> = {
   width?: T;
   height?: T;
+  padding?: string;
 };
 
-const StyledButton = styled.button<ButtonSize<ButtonSizeUnit>>`
+const StyledButton = styled.button<ButtonStyle<ButtonSizeUnit>>`
   width: ${(props) =>
     typeof props.width === 'number'
       ? props.width.toString() + 'px'
@@ -20,7 +21,7 @@ const StyledButton = styled.button<ButtonSize<ButtonSizeUnit>>`
       : props.height}
   cursor: pointer;
   border-radius: 5px;
-  padding: 28px 140px;
+  padding: ${(props) => props.padding}
   color: ${colors.white};
   background-color: ${colors.blue500};
   &:hover {
@@ -31,15 +32,16 @@ const StyledButton = styled.button<ButtonSize<ButtonSizeUnit>>`
 type Props = {
   handleSubmit: FormEventHandler<HTMLButtonElement>;
   text: string;
-} & ButtonSize<ButtonSizeUnit>;
+} & ButtonStyle<ButtonSizeUnit>;
 
 export const SubmitButton: FC<Props> = ({
   text,
   width = '337px',
   height = '81px',
+  padding = '28px 140px',
 }) => {
   return (
-    <StyledButton type="submit" width={width} height={height}>
+    <StyledButton type="submit" width={width} height={height} padding={padding}>
       {text}
     </StyledButton>
   );
