@@ -3,7 +3,7 @@ import { useInput } from 'hooks/useInput';
 import { AuthInput } from 'components/AuthInput';
 
 const Signup = () => {
-  const { inputValue, onChange } = useInput('');
+  const { inputValue, onChange, validation } = useInput('', 'email');
   return (
     <div>
       Sign up
@@ -14,7 +14,7 @@ const Signup = () => {
         onChange={onChange}
         value={inputValue}
         name="test"
-        bottomText="waring"
+        bottomText={validation.errorMessage}
       />
     </div>
   );
