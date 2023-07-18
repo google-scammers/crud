@@ -2,12 +2,7 @@ import { useState } from 'react';
 
 type UpdateValidationStatus = (
   value: string,
-  setValidation: React.Dispatch<
-    React.SetStateAction<{
-      isSuccess: boolean;
-      errorMessage: string;
-    }>
-  >
+  setValidation: (value: { isSuccess: boolean; errorMessage: string }) => void
 ) => void;
 
 export const useInput = (initialValue: string, validationOption: string) => {
