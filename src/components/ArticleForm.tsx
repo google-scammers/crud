@@ -66,29 +66,12 @@ const BtnWrap = styled.div`
   justify-content: end;
 `;
 
-/* const SubmitBtn = styled.button`
-  color: ${colors.white};
-  font-weight: 500;
-  font-size: 18px;
-  width: 180px;
-  height: 40px;
-  border: 1px solid #349eff;
-  border-radius: 5px;
-  background: #349eff;
-  margin-top: 20px;
-  &:hover {
-    border: 1px solid #128bfa;
-    background: #128bfa;
-    transition: 0.5s;
-  }
-  transition: 0.5s;
-  cursor: pointer;
-`; */
-
 export const ArticleForm: FC<PropsWithChildren> = () => {
+  const handleSubmit = () => {};
+
   return (
     <Section>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <InputWrap>
           <TitleInput type="text" name="title" placeholder="제목" />
           <ContentsInput name="content" placeholder="내용"></ContentsInput>
@@ -96,8 +79,12 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
         </InputWrap>
 
         <BtnWrap>
-          {/* <SubmitBtn> 글 올리기 </SubmitBtn> */}
-          <SubmitButton> </SubmitButton>
+          <SubmitButton
+            text={'글 올리기'}
+            width={'25%'}
+            height={'60px'}
+            padding={''}
+          />
         </BtnWrap>
       </Form>
     </Section>
