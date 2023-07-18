@@ -48,5 +48,5 @@ export const useInput = (initialValue: string, validationOption: string) => {
     validationFunc(value, setValidation);
   };
 
-  return { inputValue, onChange, setInputValue, validation };
+  return [inputValue, onChange, validation] as const;
 };
