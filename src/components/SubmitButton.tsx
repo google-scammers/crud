@@ -14,11 +14,11 @@ const StyledButton = styled.button<ButtonStyle<ButtonSizeUnit>>`
   width: ${(props) =>
     typeof props.width === 'number'
       ? props.width.toString() + 'px'
-      : props.width}
+      : props.width};
   height: ${(props) =>
     typeof props.height === 'number'
       ? props.height.toString() + 'px'
-      : props.height}
+      : props.height};
   cursor: pointer;
   border-radius: 5px;
   padding: ${(props) => props.padding}
