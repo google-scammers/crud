@@ -1,3 +1,9 @@
+import { ArticleForm } from 'components/ArticleForm';
+
 export const ArticleWrite = () => {
-  return <div>Article Write</div>;
+  return (
+    <div>
+      <ArticleForm />
+    </div>
+  );
 };
