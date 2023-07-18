@@ -20,13 +20,13 @@ export const useInput = (initialValue: string, validationOption: string) => {
       }>
     >
   ) => {
-    const validateEmail = () => regex.test(value);
+    const validationRegex = () => regex.test(value);
     if (value.length === 0) {
       setValidation({
         isSuccess: false,
         errorMessage: '필수 정보입니다.',
       });
-    } else if (validateEmail()) {
+    } else if (validationRegex()) {
       setValidation({ isSuccess: true, errorMessage: '' });
     } else {
       setValidation({
