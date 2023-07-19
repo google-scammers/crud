@@ -12,10 +12,6 @@ const InputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-
-  input {
-    margin-top: 10px;
-  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -54,7 +50,7 @@ const Signup = () => {
             onChange={onChangeEmail}
             value={emailInputValue}
             bottomText={emailValidation.errorMessage}
-            validation={false}
+            validation={true}
           />
           <AuthInput
             type="password"
@@ -64,7 +60,7 @@ const Signup = () => {
             onChange={onChangePassword}
             value={passwordInputValue}
             bottomText={passwordValidation.errorMessage}
-            validation={false}
+            validation={true}
           />
           <AuthInput
             type="confirm_password"
@@ -74,7 +70,7 @@ const Signup = () => {
             onChange={onChangePassword}
             value={passwordInputValue}
             bottomText={passwordValidation.errorMessage}
-            validation={false}
+            validation={true}
           />
           <Link to="/crud/login">
             <SignUpButton>로그인</SignUpButton>
