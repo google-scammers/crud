@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { styled } from 'styled-components';
 
 const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
@@ -30,9 +30,11 @@ export const ArticleModal: FC<Props> = ({
   setIsModalVisible,
 }) => {
   return (
-    <StyledModalBackground isModalVisible={isModalVisible}>
+    <StyledModalBackground
+      isModalVisible={isModalVisible}
+      onClick={() => setIsModalVisible(!isModalVisible)}
+    >
       <div
-        onClick={() => setIsModalVisible(false)}
         style={{
           width: '976px',
           height: '537px',
@@ -40,8 +42,17 @@ export const ArticleModal: FC<Props> = ({
           borderRadius: '15px',
           backgroundColor: 'white',
         }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       >
-        <StyledClose>close</StyledClose>
+        <StyledClose
+          onClick={() => {
+            setIsModalVisible(!isModalVisible);
+          }}
+        >
+          close
+        </StyledClose>
         <div
           style={{
             display: 'grid',
