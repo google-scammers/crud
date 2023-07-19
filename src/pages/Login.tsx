@@ -1,4 +1,5 @@
 import { useInput } from 'hooks/useInput';
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
@@ -65,7 +66,9 @@ export const Login = () => {
             bottomText={passwordValidation.errorMessage}
             validation={false}
           />
-          <SignUpButton>회원가입</SignUpButton>
+          <Link to="/crud/signup">
+            <SignUpButton>회원가입</SignUpButton>
+          </Link>
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="로그인" />
