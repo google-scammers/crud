@@ -30,7 +30,7 @@ const Input = styled.input`
   width: 100%;
   padding: 0 18px;
   font-size: 15px;
-  line-height: 48px;
+  line-height: 58px;
   margin: 0;
   outline: none;
   border: none;
