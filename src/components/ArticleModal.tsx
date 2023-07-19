@@ -24,7 +24,7 @@ const StyledModal = styled.div`
   width: 976px;
   height: 537px;
   position: relative;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: white;
   padding: 42px;
   box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
@@ -44,7 +44,7 @@ const StyledButton = styled.button`
   }
 `;
 const StyledLeft = styled.div<{ image: string | null }>`
-  border-radius: 15px;
+  border-radius: 10px;
   background-image: url(${(props) => (props.image ? props.image : thumbnail)});
   background-position: center;
   background-size: cover;
