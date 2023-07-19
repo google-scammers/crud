@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const userState = atom({
+import { User } from '../apis/user';
+
+export const userState = atom<User | null>({
   key: 'userState',
   default: null,
 });
