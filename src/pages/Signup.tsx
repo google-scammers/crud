@@ -68,7 +68,7 @@ const Signup = () => {
             validation={true}
           />
           <AuthInput
-            type="confirm_password"
+            type="password"
             label="confirm password"
             id="confirm_password"
             name="confirm_password"
