@@ -28,10 +28,15 @@ export const Navbar = () => {
       <div>
         <Link to="">CRUD</Link>
       </div>
-      <ul>
-          <li>
-              <Link to={'write'}>글쓰기</Link>
-          </li>
+      <ul
+        style={{
+          display: 'flex',
+          gap: '10px',
+        }}
+      >
+        <li>
+          <Link to={'write'}>글쓰기</Link>
+        </li>
         <li>
           <Link to={'login'}>로그인</Link>
         </li>
