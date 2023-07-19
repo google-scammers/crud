@@ -10,6 +10,7 @@ type AuthInputProps = {
   name: string;
   value: string;
   bottomText: string;
+  validation: boolean;
 };
 
 const Container = styled.div`
@@ -18,7 +19,8 @@ const Container = styled.div`
 
 const Label = styled.label`
   display: inline-block;
-  padding: 5px 0;
+  width: 100%;
+  padding: 2px 0;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.6;
@@ -29,13 +31,13 @@ const Input = styled.input`
   width: 100%;
   padding: 0 18px;
   font-size: 15px;
-  line-height: 48px;
+  line-height: 58px;
   margin: 0;
   outline: none;
   border: none;
   border-radius: 8px;
   background-color: ${colors.white};
-  box-shadow: inset 0 0 0 1px ${colors.greyOpacity200};
+  box-shadow: inset 0 0 0 1px ${colors.greyOpacity400};
 
   &:focus {
     box-shadow: inset 0 0 0 2px ${colors.blue500};
@@ -44,6 +46,7 @@ const Input = styled.input`
 
 const BottomText = styled.p`
   width: 100%;
+  height: 16px;
   color: ${colors.red600};
   margin-top: 4px;
   display: inline-block;
@@ -59,11 +62,11 @@ export const AuthInput = ({
   name,
   value,
   bottomText,
+  validation,
 }: AuthInputProps) => {
   return (
     <Container>
       <Label htmlFor={id}>
-        {label}
         <Input
           type={type}
           placeholder={label}
@@ -72,8 +75,8 @@ export const AuthInput = ({
           name={name}
           value={value}
         />
+        {validation ? <BottomText>{bottomText}</BottomText> : null}
       </Label>
-      <BottomText>{bottomText}</BottomText>
     </Container>
   );
 };
