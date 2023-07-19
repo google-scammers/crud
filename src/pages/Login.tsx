@@ -4,7 +4,9 @@ import { styled } from 'styled-components';
 import { AuthForm } from 'components/AuthForm';
 import { AuthInput } from 'components/AuthInput';
 
-const InputContainer = styled.div``;
+const InputContainer = styled.div`
+  width: 80%;
+`;
 
 export const Login = () => {
   const {
@@ -38,7 +40,7 @@ export const Login = () => {
             onChange={onChangePassword}
             value={passwordInputValue}
             bottomText={passwordValidation.errorMessage}
-          ></AuthInput>
+          />
         </InputContainer>
       </AuthForm>
     </div>

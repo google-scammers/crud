@@ -18,7 +18,8 @@ const Container = styled.div`
 
 const Label = styled.label`
   display: inline-block;
-  padding: 5px 0;
+  width: 100%;
+  padding: 2px 0;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.6;
@@ -44,6 +45,7 @@ const Input = styled.input`
 
 const BottomText = styled.p`
   width: 100%;
+  height: 16px;
   color: ${colors.red600};
   margin-top: 4px;
   display: inline-block;
@@ -72,8 +74,8 @@ export const AuthInput = ({
           name={name}
           value={value}
         />
+        <BottomText>{bottomText}</BottomText>
       </Label>
-      <BottomText>{bottomText}</BottomText>
     </Container>
   );
 };
