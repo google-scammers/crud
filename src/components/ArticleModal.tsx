@@ -20,6 +20,15 @@ const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
   justify-content: center;
   transition: ${TRANSITION_DURATION.toString() + 's all ease-out 0s'};
 `;
+const StyledModal = styled.div`
+  width: 976px;
+  height: 537px;
+  position: relative;
+  border-radius: 15px;
+  background-color: white;
+  padding: 42px;
+  box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
+`;
 const StyledControlBox = styled.div`
   position: absolute;
   right: 10px;
@@ -95,16 +104,8 @@ export const ArticleModal: FC<Props> = ({
         setIsModalVisible(!isModalVisible);
       }}
     >
-      <div
-        style={{
-          width: '976px',
-          height: '537px',
-          position: 'relative',
-          borderRadius: '15px',
-          backgroundColor: 'white',
-          padding: '42px',
-        }}
-        onClick={(e) => {
+      <StyledModal
+        onClick={(e: MouseEvent<HTMLDivElement>) => {
           e.stopPropagation();
         }}
       >
@@ -129,7 +130,7 @@ export const ArticleModal: FC<Props> = ({
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>
-      </div>
+      </StyledModal>
     </StyledModalBackground>
   );
 };
