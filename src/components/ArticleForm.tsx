@@ -49,7 +49,7 @@ const TitleInput = styled.input`
 
 const ContentsInput = styled.textarea`
   margin: 20px 0;
-  height: 300px;
+  height: 40vh;
   resize: none;
   outline: 0;
   padding-top: 10px;
@@ -67,13 +67,21 @@ const BtnWrap = styled.div`
 `;
 
 export const ArticleForm: FC<PropsWithChildren> = () => {
+  // const [title, setTitle] = useState();
+
   const handleSubmit = () => {};
 
+  const onChange = () => {};
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
         <InputWrap>
-          <TitleInput type="text" name="title" placeholder="제목" />
+          <TitleInput
+            type="text"
+            name="title"
+            placeholder="제목"
+            onChange={onChange}
+          />
           <ContentsInput name="content" placeholder="내용"></ContentsInput>
           <FileInput type="file" />
         </InputWrap>
