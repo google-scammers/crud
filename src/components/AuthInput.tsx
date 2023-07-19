@@ -36,7 +36,7 @@ const Input = styled.input`
   border: none;
   border-radius: 8px;
   background-color: ${colors.white};
-  box-shadow: inset 0 0 0 1px ${colors.greyOpacity200};
+  box-shadow: inset 0 0 0 1px ${colors.greyOpacity400};
 
   &:focus {
     box-shadow: inset 0 0 0 2px ${colors.blue500};
