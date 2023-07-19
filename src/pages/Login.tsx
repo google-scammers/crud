@@ -11,6 +11,10 @@ const InputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+
+  input {
+    margin-top: 10px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -22,6 +26,7 @@ const SignUpButton = styled.div`
   width: 100%;
   text-align: end;
   color: ${colors.grey600};
+  margin-top: 14px;
 `;
 
 export const Login = () => {
@@ -48,6 +53,7 @@ export const Login = () => {
             onChange={onChangeEmail}
             value={emailInputValue}
             bottomText={emailValidation.errorMessage}
+            validation={false}
           />
           <AuthInput
             type="password"
@@ -57,6 +63,7 @@ export const Login = () => {
             onChange={onChangePassword}
             value={passwordInputValue}
             bottomText={passwordValidation.errorMessage}
+            validation={false}
           />
           <SignUpButton>회원가입</SignUpButton>
         </InputContainer>

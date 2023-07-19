@@ -10,6 +10,7 @@ type AuthInputProps = {
   name: string;
   value: string;
   bottomText: string;
+  validation: boolean;
 };
 
 const Container = styled.div`
@@ -61,6 +62,7 @@ export const AuthInput = ({
   name,
   value,
   bottomText,
+  validation,
 }: AuthInputProps) => {
   return (
     <Container>
@@ -73,7 +75,7 @@ export const AuthInput = ({
           name={name}
           value={value}
         />
-        <BottomText>{bottomText}</BottomText>
+        {validation ? <BottomText>{bottomText}</BottomText> : null}
       </Label>
     </Container>
   );
