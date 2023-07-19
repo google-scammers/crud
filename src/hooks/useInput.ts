@@ -5,9 +5,15 @@ type UpdateValidationStatus = (
   setValidation: (value: { isSuccess: boolean; errorMessage: string }) => void
 ) => void;
 
-export const useInput = (initialValue: string, validationOption: string) => {
+export const useInput = (
+  initialValue: string,
+  validationOption: string,
+  passwordToCompare?: string
+) => {
   let regex: RegExp;
   let errorMessage: string;
+
+  const createRegex = (str = '') => new RegExp(`${str}$`);
 
   if (validationOption === 'email') {
     regex = /.*@.*/;
@@ -16,6 +22,10 @@ export const useInput = (initialValue: string, validationOption: string) => {
   if (validationOption === 'password') {
     regex = /.{8}/;
     errorMessage = '8자 이상으로 작성해주세요.';
+  }
+  if (validationOption === 'confirm_password') {
+    regex = createRegex(passwordToCompare);
+    errorMessage = '비밀번호가 일치하지 않습니다.';
   }
 
   const updateValidationStatus: UpdateValidationStatus = (

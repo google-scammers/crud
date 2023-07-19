@@ -37,6 +37,11 @@ const Signup = () => {
     onChange: onChangePassword,
     validation: passwordValidation,
   } = useInput('', 'password');
+  const {
+    inputValue: passwordToCompareInputValue,
+    onChange: onChangePasswordToCompare,
+    validation: passwordToCompareValidation,
+  } = useInput('', 'confirm_password', passwordInputValue);
 
   return (
     <div>
@@ -67,9 +72,9 @@ const Signup = () => {
             label="confirm password"
             id="confirm_password"
             name="confirm_password"
-            onChange={onChangePassword}
-            value={passwordInputValue}
-            bottomText={passwordValidation.errorMessage}
+            onChange={onChangePasswordToCompare}
+            value={passwordToCompareInputValue}
+            bottomText={passwordToCompareValidation.errorMessage}
             validation={true}
           />
           <Link to="/crud/login">
