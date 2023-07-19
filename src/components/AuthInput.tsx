@@ -65,7 +65,6 @@ export const AuthInput = ({
   return (
     <Container>
       <Label htmlFor={id}>
-        {label}
         <Input
           type={type}
           placeholder={label}

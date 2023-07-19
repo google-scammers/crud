@@ -19,6 +19,7 @@ export const Login = () => {
     onChange: onChangePassword,
     validation: passwordValidation,
   } = useInput('', 'password');
+
   return (
     <div>
       <AuthForm>
