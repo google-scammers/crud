@@ -77,11 +77,11 @@ const Signup = () => {
             validation={false}
           />
           <Link to="/crud/login">
-            <SignUpButton>회원가입</SignUpButton>
+            <SignUpButton>로그인</SignUpButton>
           </Link>
         </InputContainer>
         <ButtonWrapper>
-          <SubmitButton text="로그인" />
+          <SubmitButton text="회원가입" />
         </ButtonWrapper>
       </AuthForm>
     </div>
