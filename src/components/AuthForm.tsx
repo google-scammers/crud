@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, FormEvent, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
 /* import { colors } from "constants/colors"; */
@@ -25,7 +25,7 @@ const Title = styled.h2`
   display: none;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,13 +34,20 @@ const Form = styled.div`
   position: relative;
 `;
 
-export const AuthForm: FC<PropsWithChildren> = ({ children }) => {
+type Props = {
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+};
+
+export const AuthForm: FC<PropsWithChildren<Props>> = ({
+  children,
+  handleSubmit,
+}) => {
   return (
     <Section>
       <Wrap>
         <Title> Login </Title>
 
-        <Form>{children}</Form>
+        <Form onSubmit={handleSubmit}>{children}</Form>
       </Wrap>
     </Section>
   );
