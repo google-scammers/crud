@@ -19,14 +19,26 @@ export const getUser = async (
   return res;
 };
 
-export const login = async (data: {
-  email: string;
-  password: string;
-}): Promise<AxiosResponse<{ email: string }>> => {
+export const login = async (data: FormData): Promise<AxiosResponse<User>> => {
   const res = await axiosInstance({
-    url: 'user',
+    url: 'user/signin',
     method: 'POST',
     data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res;
+};
+
+export const signup = async (data: FormData): Promise<AxiosResponse<User>> => {
+  const res = await axiosInstance({
+    url: 'user/signup',
+    method: 'POST',
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
   return res;
 };
