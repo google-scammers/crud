@@ -1,11 +1,16 @@
 import { useInput } from 'hooks/useInput';
+import { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
 import { AuthInput } from 'components/AuthInput';
 import { SubmitButton } from 'components/SubmitButton';
 import { colors } from 'constants/colors';
+
+import { login } from '../apis/user';
+import { userState } from '../recoil/user';
 
 const InputContainer = styled.div`
   width: 80%;
@@ -42,9 +47,25 @@ export const Login = () => {
     validation: passwordValidation,
   } = useInput('', 'password');
 
+  const setUser = useSetRecoilState(userState);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    console.log(formData);
+    login(formData)
+      .then((res) => {
+        setUser({ email: res.data.email });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
-      <AuthForm>
+      <AuthForm handleSubmit={handleSubmit}>
         <InputContainer>
           <AuthInput
             type="email"
