@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { colors } from '../constants/colors';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../recoil/user';
 
 export const Navbar = () => {
   const StyledNav = styled.nav`
@@ -23,6 +25,8 @@ export const Navbar = () => {
     }
   `;
 
+  const user = useRecoilValue(userState);
+
   return (
     <StyledNav>
       <div>
@@ -34,12 +38,16 @@ export const Navbar = () => {
           gap: '10px',
         }}
       >
-        <li>
-          <Link to={'write'}>글쓰기</Link>
-        </li>
-        <li>
-          <Link to={'login'}>로그인</Link>
-        </li>
+        {user ? (
+          <li>
+            <Link to={'write'}>글쓰기</Link>
+          </li>
+        ) : null}
+        {user ? null : (
+          <li>
+            <Link to={'login'}>로그인</Link>
+          </li>
+        )}
       </ul>
     </StyledNav>
   );
