@@ -26,9 +26,8 @@ export const Navbar = () => {
     }
   `;
 
-  const {
-    data: { email },
-  } = useLoaderData() as { data: { email: string } };
+  const res = useLoaderData() as { data: { email: string } };
+  const email = res && res.data.email;
 
   const setUser = useSetRecoilState(userState);
   const user = useRecoilValue(userState);
