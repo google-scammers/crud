@@ -1,6 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
@@ -47,6 +47,7 @@ export const Login = () => {
     validation: passwordValidation,
   } = useInput('', 'password');
 
+  const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -57,6 +58,7 @@ export const Login = () => {
     login(formData)
       .then((res) => {
         setUser({ email: res.data.email });
+        navigate('/crud');
       })
       .catch((err) => {
         console.log(err);
