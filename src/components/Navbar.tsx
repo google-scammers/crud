@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { colors } from '../constants/colors';
-import { useRecoilValue } from 'recoil';
+import { User } from '../apis/user';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '../recoil/user';
 
 export const Navbar = () => {
@@ -25,7 +27,20 @@ export const Navbar = () => {
     }
   `;
 
+  const {
+    data: { email },
+  } = useLoaderData() as { data: { email: string } };
+
+  const setUser = useSetRecoilState(userState);
   const user = useRecoilValue(userState);
+
+  useEffect(() => {
+    setUser({ email });
+  }, [email]);
+
+  const checkUser = () => {
+    return email || user?.email;
+  };
 
   return (
     <StyledNav>
@@ -38,12 +53,12 @@ export const Navbar = () => {
           gap: '10px',
         }}
       >
-        {user ? (
+        {checkUser() ? (
           <li>
             <Link to={'write'}>글쓰기</Link>
           </li>
         ) : null}
-        {user ? null : (
+        {checkUser() ? null : (
           <li>
             <Link to={'login'}>로그인</Link>
           </li>
