@@ -1,10 +1,9 @@
+import { useEffect } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { colors } from '../constants/colors';
-import { User } from '../apis/user';
-import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '../recoil/user';
 
 export const Navbar = () => {
