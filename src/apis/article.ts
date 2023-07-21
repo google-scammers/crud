@@ -14,8 +14,7 @@ promise를 리턴한다.
 export const getArticle = async (): Promise<AxiosResponse<Article[]>> => {
   const res = await axiosInstance({
     method: 'GET',
-    url: 'articles',
+    url: 'article',
   });
   return res;
 };
-

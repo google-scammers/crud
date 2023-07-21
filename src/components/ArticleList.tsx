@@ -6,6 +6,8 @@ import { colors } from 'constants/colors';
 import { getArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
+import { ArticleModal } from './ArticleModal';
+
 const Main = styled.main`
   margin: 20px 2%;
   display: flex;
@@ -61,6 +63,14 @@ const Wrap = styled.div`
   justify-content: center; */
 `;
 
+type ArticleType = {
+  title: string;
+  author: string;
+  created_at: Date;
+  content: string;
+  id: number;
+};
+
 export const ArticleList = () => {
   const MainElement = useRef<HTMLElement>(null);
 
@@ -69,6 +79,9 @@ export const ArticleList = () => {
   const [cardNumber, setCardNumber] = useState(
     Math.floor(window.innerWidth / cardWidth)
   );
+  const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [currentArticle, setCurrentArticle] = useState<ArticleType>();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleResize = () => {
     console.log(MainElement.current);
@@ -78,6 +91,11 @@ export const ArticleList = () => {
       const gapSize = (Math.floor(mainWidth / cardWidth) - 1) * 15;
       setCardNumber(Math.floor((mainWidth - gapSize) / cardWidth));
     }
+  };
+
+  const handleClick = (article: ArticleType) => {
+    setIsModalVisible((value) => !value);
+    setCurrentArticle(article);
   };
 
   useEffect(() => {
@@ -90,13 +108,6 @@ export const ArticleList = () => {
     };
   }, []);
 
-  type ArticleType = {
-    title: string;
-    author: string;
-  };
-
-  const [articles, setArticles] = useState<ArticleType[]>([]);
-
   useEffect(() => {
     getArticle()
       .then((res) => {
@@ -107,7 +118,7 @@ export const ArticleList = () => {
       });
   }, []);
 
-  console.log(articles);
+  console.log(isModalVisible);
 
   return (
     <Wrap>
@@ -115,18 +126,26 @@ export const ArticleList = () => {
         <CardList cardnumber={cardNumber}>
           {articles.map((article) => {
             return (
-              <>
-                <Card>
-                  <ListInfo>
-                    <Title> {article.title} </Title>
-                    <Writer> {article.author} </Writer>
-                  </ListInfo>
-                </Card>
-              </>
+              <Card onClick={() => handleClick(article)} key={article.id}>
+                <ListInfo>
+                  <Title> {article.title} </Title>
+                  <Writer> {article.author} </Writer>
+                </ListInfo>
+              </Card>
             );
           })}
         </CardList>
       </Main>
+      {currentArticle ? (
+        <ArticleModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+          author={currentArticle.author}
+          title={currentArticle.title}
+          created_at={currentArticle.created_at}
+          content={currentArticle.content}
+        />
+      ) : null}
     </Wrap>
   );
 };
