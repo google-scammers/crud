@@ -25,6 +25,9 @@ export const Navbar = () => {
       }
     }
   `;
+  const StyledSignOut = styled.button`
+    cursor: pointer;
+  `;
 
   const res = useLoaderData() as { data: { email: string } };
   const email = res && res.data.email;
@@ -38,6 +41,11 @@ export const Navbar = () => {
 
   const checkUser = () => {
     return email || user?.email;
+  };
+
+  const handleSignOut = () => {
+    localStorage.clear();
+    setUser(null);
   };
 
   return (
@@ -56,11 +64,13 @@ export const Navbar = () => {
             <Link to={'write'}>글쓰기</Link>
           </li>
         ) : null}
-        {checkUser() ? null : (
-          <li>
+        <li>
+          {checkUser() ? (
+            <StyledSignOut onClick={handleSignOut}>로그아웃</StyledSignOut>
+          ) : (
             <Link to={'login'}>로그인</Link>
-          </li>
-        )}
+          )}
+        </li>
       </ul>
     </StyledNav>
   );

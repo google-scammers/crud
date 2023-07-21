@@ -1,7 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
@@ -10,7 +9,6 @@ import { SubmitButton } from 'components/SubmitButton';
 import { colors } from 'constants/colors';
 
 import { signup } from '../apis/user';
-import { userState } from '../recoil/user';
 
 const InputContainer = styled.div`
   width: 80%;
@@ -48,7 +46,7 @@ const Signup = () => {
     validation: passwordToCompareValidation,
   } = useInput('', 'confirm_password', passwordInputValue);
 
-  const setUser = useSetRecoilState(userState);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,8 +54,8 @@ const Signup = () => {
     const formData = new FormData(e.currentTarget);
     console.log(formData);
     signup(formData)
-      .then((res) => {
-        setUser({ email: res.data.email });
+      .then(() => {
+        navigate('/crud');
       })
       .catch((err) => {
         console.log(err);
