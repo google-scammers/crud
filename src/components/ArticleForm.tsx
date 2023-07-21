@@ -72,7 +72,7 @@ type Article = {
 };
 
 export const ArticleForm: FC<PropsWithChildren> = () => {
-  const [inputs, setInputs] = useState<Article>({
+  const [articleData, setArticleData] = useState<Article>({
     title: '',
     content: '',
   });
@@ -84,8 +84,8 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
   ) => {
     const { value, name } = e.target;
 
-    setInputs({
-      ...inputs,
+    setArticleData({
+      ...articleData,
       [name]: value,
     });
   };

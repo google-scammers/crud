@@ -20,7 +20,7 @@ const CardList = styled.ul<{ cardnumber: number }>`
   /* width: 60%; */
 `;
 
-const Crad = styled.li`
+const Card = styled.li`
   background-image: url(${thumbnail});
   height: 262px;
   border-radius: 10px;
@@ -71,12 +71,12 @@ export const ArticleList = () => {
   );
 
   const handleResize = () => {
+    console.log(MainElement.current);
     if (MainElement.current) {
-      const gapSize =
-        (Math.floor(MainElement.current.offsetWidth / cardWidth) - 1) * 15;
-      setCardNumber(
-        Math.floor((MainElement.current.offsetWidth - gapSize) / cardWidth)
-      );
+      const mainWidth = MainElement.current.offsetWidth;
+
+      const gapSize = (Math.floor(mainWidth / cardWidth) - 1) * 15;
+      setCardNumber(Math.floor((mainWidth - gapSize) / cardWidth));
     }
   };
 
@@ -116,12 +116,12 @@ export const ArticleList = () => {
           {articles.map((article) => {
             return (
               <>
-                <Crad>
+                <Card>
                   <ListInfro>
                     <Title> {article.title} </Title>
                     <Writer> {article.author} </Writer>
                   </ListInfro>
-                </Crad>
+                </Card>
               </>
             );
           })}
