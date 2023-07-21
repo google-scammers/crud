@@ -20,7 +20,7 @@ const CardList = styled.ul<{ cardnumber: number }>`
   /* width: 60%; */
 `;
 
-const Crad = styled.li`
+const Card = styled.li`
   background-image: url(${thumbnail});
   height: 262px;
   border-radius: 10px;
@@ -34,7 +34,7 @@ const Crad = styled.li`
   cursor: pointer;
 `;
 
-const ListInfro = styled.div`
+const ListInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -90,12 +90,12 @@ export const ArticleList = () => {
     };
   }, []);
 
-  type AricleType = {
+  type ArticleType = {
     title: string;
     author: string;
   };
 
-  const [articles, setArticles] = useState<AricleType[]>([]);
+  const [articles, setArticles] = useState<ArticleType[]>([]);
 
   useEffect(() => {
     getArticle()
@@ -116,12 +116,12 @@ export const ArticleList = () => {
           {articles.map((article) => {
             return (
               <>
-                <Crad>
-                  <ListInfro>
+                <Card>
+                  <ListInfo>
                     <Title> {article.title} </Title>
                     <Writer> {article.author} </Writer>
-                  </ListInfro>
-                </Crad>
+                  </ListInfo>
+                </Card>
               </>
             );
           })}
