@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { useState, FC, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
@@ -6,7 +6,7 @@ import { colors } from 'constants/colors';
 import { SubmitButton } from './SubmitButton';
 
 const Section = styled.section`
-  height: 89vh;
+  height: 88vh;
   display: flex;
   justify-content: center;
 `;
@@ -14,7 +14,7 @@ const Section = styled.section`
 const Form = styled.form`
   border: 1px solid ${colors.grey400};
   width: 80%;
-  height: 80%;
+  height: 83%;
   border-radius: 15px;
   margin-top: 40px;
   padding: 2% 2%;
@@ -49,7 +49,7 @@ const TitleInput = styled.input`
 
 const ContentsInput = styled.textarea`
   margin: 20px 0;
-  height: 40vh;
+  height: 43vh;
   resize: none;
   outline: 0;
   padding-top: 10px;
@@ -66,12 +66,30 @@ const BtnWrap = styled.div`
   justify-content: end;
 `;
 
+type Article = {
+  title: string | number;
+  content: string | number;
+};
+
 export const ArticleForm: FC<PropsWithChildren> = () => {
-  // const [title, setTitle] = useState();
+  const [inputs, setInputs] = useState<Article>({
+    title: '',
+    content: '',
+  });
 
   const handleSubmit = () => {};
 
-  const onChange = () => {};
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { value, name } = e.target;
+
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
@@ -82,7 +100,11 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
             placeholder="제목"
             onChange={onChange}
           />
-          <ContentsInput name="content" placeholder="내용"></ContentsInput>
+          <ContentsInput
+            name="content"
+            placeholder="내용"
+            onChange={onChange}
+          ></ContentsInput>
           <FileInput type="file" />
         </InputWrap>
 
