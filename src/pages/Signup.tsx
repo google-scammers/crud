@@ -1,7 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
@@ -10,7 +9,6 @@ import { SubmitButton } from 'components/SubmitButton';
 import { colors } from 'constants/colors';
 
 import { signup } from '../apis/user';
-import { userState } from '../recoil/user';
 
 const InputContainer = styled.div`
   width: 80%;
