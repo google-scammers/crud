@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+
 import { User } from './user';
 
 export const axiosInstance = axios.create({
