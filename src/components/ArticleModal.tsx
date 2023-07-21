@@ -65,10 +65,10 @@ const StyledContent = styled.p``;
 
 type Props = {
   image?: string;
-  title?: string;
-  author?: string;
-  content?: string;
-  date?: string;
+  title: string;
+  author: string;
+  content: string;
+  created_at: Date;
   isModalVisible: boolean;
   setIsModalVisible: (value: boolean) => void;
 };
@@ -77,10 +77,10 @@ export const ArticleModal: FC<Props> = ({
   isModalVisible,
   setIsModalVisible,
   image = null,
-  author = '작성자',
-  title = '제목',
-  date = '2023.07.19',
-  content = '내용',
+  author,
+  title,
+  created_at,
+  content,
 }) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
@@ -135,7 +135,7 @@ export const ArticleModal: FC<Props> = ({
           <StyledRight>
             <StyledTitle>{title}</StyledTitle>
             <StyledAuthor>{author}</StyledAuthor>
-            <StyledDate>{date}</StyledDate>
+            <StyledDate>{created_at.toString()}</StyledDate>
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>

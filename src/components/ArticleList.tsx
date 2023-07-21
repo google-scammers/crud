@@ -66,6 +66,9 @@ const Wrap = styled.div`
 type ArticleType = {
   title: string;
   author: string;
+  created_at: Date;
+  content: string;
+  id: number;
 };
 
 export const ArticleList = () => {
@@ -133,7 +136,7 @@ export const ArticleList = () => {
                   setIsModalVisible={setIsModalVisible}
                   author={article.author}
                   title={article.title}
-                  date={article.date}
+                  created_at={article.created_at}
                   content={article.content}
                 />
               </>
