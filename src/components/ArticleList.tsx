@@ -121,20 +121,26 @@ export const ArticleList = () => {
         <CardList cardnumber={cardNumber}>
           {articles.map((article) => {
             return (
-              <Card onClick={handleClick}>
-                <ListInfo>
-                  <Title> {article.title} </Title>
-                  <Writer> {article.author} </Writer>
-                </ListInfo>
-              </Card>
+              <>
+                <Card onClick={handleClick}>
+                  <ListInfo>
+                    <Title> {article.title} </Title>
+                    <Writer> {article.author} </Writer>
+                  </ListInfo>
+                </Card>
+                <ArticleModal
+                  isModalVisible={isModalVisible}
+                  setIsModalVisible={setIsModalVisible}
+                  author={article.author}
+                  title={article.title}
+                  date={article.date}
+                  content={article.content}
+                />
+              </>
             );
           })}
         </CardList>
       </Main>
-      <ArticleModal
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-      />
     </Wrap>
   );
 };
