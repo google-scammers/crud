@@ -115,14 +115,12 @@ export const ArticleList = () => {
         <CardList cardnumber={cardNumber}>
           {articles.map((article) => {
             return (
-              <>
-                <Card>
-                  <ListInfo>
-                    <Title> {article.title} </Title>
-                    <Writer> {article.author} </Writer>
-                  </ListInfo>
-                </Card>
-              </>
+              <Card>
+                <ListInfo>
+                  <Title> {article.title} </Title>
+                  <Writer> {article.author} </Writer>
+                </ListInfo>
+              </Card>
             );
           })}
         </CardList>
