@@ -69,6 +69,7 @@ export const ArticleList = () => {
   const [cardNumber, setCardNumber] = useState(
     Math.floor(window.innerWidth / cardWidth)
   );
+  const [articles, setArticles] = useState<ArticleType[]>([]);
 
   const handleResize = () => {
     console.log(MainElement.current);
@@ -94,8 +95,6 @@ export const ArticleList = () => {
     title: string;
     author: string;
   };
-
-  const [articles, setArticles] = useState<ArticleType[]>([]);
 
   useEffect(() => {
     getArticle()
