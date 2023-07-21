@@ -80,6 +80,7 @@ export const ArticleList = () => {
     Math.floor(window.innerWidth / cardWidth)
   );
   const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [currentArticle, setCurrentArticle] = useState<ArticleType>();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleResize = () => {
@@ -92,8 +93,9 @@ export const ArticleList = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (article: ArticleType) => {
     setIsModalVisible((value) => !value);
+    setCurrentArticle(article);
   };
 
   useEffect(() => {
@@ -124,26 +126,26 @@ export const ArticleList = () => {
         <CardList cardnumber={cardNumber}>
           {articles.map((article) => {
             return (
-              <>
-                <Card onClick={handleClick}>
-                  <ListInfo>
-                    <Title> {article.title} </Title>
-                    <Writer> {article.author} </Writer>
-                  </ListInfo>
-                </Card>
-                <ArticleModal
-                  isModalVisible={isModalVisible}
-                  setIsModalVisible={setIsModalVisible}
-                  author={article.author}
-                  title={article.title}
-                  created_at={article.created_at}
-                  content={article.content}
-                />
-              </>
+              <Card onClick={() => handleClick(article)} key={article.id}>
+                <ListInfo>
+                  <Title> {article.title} </Title>
+                  <Writer> {article.author} </Writer>
+                </ListInfo>
+              </Card>
             );
           })}
         </CardList>
       </Main>
+      {currentArticle ? (
+        <ArticleModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+          author={currentArticle.author}
+          title={currentArticle.title}
+          created_at={currentArticle.created_at}
+          content={currentArticle.content}
+        />
+      ) : null}
     </Wrap>
   );
 };
