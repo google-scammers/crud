@@ -44,6 +44,7 @@ export const Navbar = () => {
   };
 
   const handleSignOut = () => {
+    localStorage.clear();
     setUser(null);
   };
 
