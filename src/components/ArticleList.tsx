@@ -34,7 +34,7 @@ const Card = styled.li`
   cursor: pointer;
 `;
 
-const ListInfro = styled.div`
+const ListInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -90,12 +90,12 @@ export const ArticleList = () => {
     };
   }, []);
 
-  type AricleType = {
+  type ArticleType = {
     title: string;
     author: string;
   };
 
-  const [articles, setArticles] = useState<AricleType[]>([]);
+  const [articles, setArticles] = useState<ArticleType[]>([]);
 
   useEffect(() => {
     getArticle()
@@ -117,10 +117,10 @@ export const ArticleList = () => {
             return (
               <>
                 <Card>
-                  <ListInfro>
+                  <ListInfo>
                     <Title> {article.title} </Title>
                     <Writer> {article.author} </Writer>
-                  </ListInfro>
+                  </ListInfo>
                 </Card>
               </>
             );
