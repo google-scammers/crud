@@ -71,12 +71,12 @@ export const ArticleList = () => {
   );
 
   const handleResize = () => {
+    console.log(MainElement.current);
     if (MainElement.current) {
-      const gapSize =
-        (Math.floor(MainElement.current.offsetWidth / cardWidth) - 1) * 15;
-      setCardNumber(
-        Math.floor((MainElement.current.offsetWidth - gapSize) / cardWidth)
-      );
+      const mainWidth = MainElement.current.offsetWidth;
+
+      const gapSize = (Math.floor(mainWidth / cardWidth) - 1) * 15;
+      setCardNumber(Math.floor((mainWidth - gapSize) / cardWidth));
     }
   };
 
