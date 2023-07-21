@@ -111,7 +111,14 @@ export const ArticleModal: FC<Props> = ({
       >
         <StyledControlBox>
           <StyledButton>edit</StyledButton>
-          <StyledButton onClick={() => setIsModalVisible(!isModalVisible)}>
+          <StyledButton
+            onClick={() => {
+              if (backgroundRef.current) {
+                backgroundRef.current.style.opacity = '0';
+                setIsModalVisible(!isModalVisible);
+              }
+            }}
+          >
             close
           </StyledButton>
         </StyledControlBox>

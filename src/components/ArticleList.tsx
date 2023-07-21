@@ -6,6 +6,8 @@ import { colors } from 'constants/colors';
 import { getArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
+import { ArticleModal } from './ArticleModal';
+
 const Main = styled.main`
   margin: 20px 2%;
   display: flex;
@@ -61,6 +63,11 @@ const Wrap = styled.div`
   justify-content: center; */
 `;
 
+type ArticleType = {
+  title: string;
+  author: string;
+};
+
 export const ArticleList = () => {
   const MainElement = useRef<HTMLElement>(null);
 
@@ -70,6 +77,7 @@ export const ArticleList = () => {
     Math.floor(window.innerWidth / cardWidth)
   );
   const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleResize = () => {
     console.log(MainElement.current);
@@ -79,6 +87,10 @@ export const ArticleList = () => {
       const gapSize = (Math.floor(mainWidth / cardWidth) - 1) * 15;
       setCardNumber(Math.floor((mainWidth - gapSize) / cardWidth));
     }
+  };
+
+  const handleClick = () => {
+    setIsModalVisible((value) => !value);
   };
 
   useEffect(() => {
@@ -91,11 +103,6 @@ export const ArticleList = () => {
     };
   }, []);
 
-  type ArticleType = {
-    title: string;
-    author: string;
-  };
-
   useEffect(() => {
     getArticle()
       .then((res) => {
@@ -106,7 +113,7 @@ export const ArticleList = () => {
       });
   }, []);
 
-  console.log(articles);
+  console.log(isModalVisible);
 
   return (
     <Wrap>
@@ -114,7 +121,7 @@ export const ArticleList = () => {
         <CardList cardnumber={cardNumber}>
           {articles.map((article) => {
             return (
-              <Card>
+              <Card onClick={handleClick}>
                 <ListInfo>
                   <Title> {article.title} </Title>
                   <Writer> {article.author} </Writer>
@@ -124,6 +131,10 @@ export const ArticleList = () => {
           })}
         </CardList>
       </Main>
+      <ArticleModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
     </Wrap>
   );
 };
