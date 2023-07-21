@@ -64,11 +64,11 @@ const StyledDate = styled.span``;
 const StyledContent = styled.p``;
 
 type Props = {
-  image: string;
-  title: string;
-  author: string;
-  content: string;
-  date: string;
+  image?: string;
+  title?: string;
+  author?: string;
+  content?: string;
+  date?: string;
   isModalVisible: boolean;
   setIsModalVisible: (value: boolean) => void;
 };
