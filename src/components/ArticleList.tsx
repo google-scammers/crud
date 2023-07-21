@@ -3,22 +3,25 @@ import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
 
+import { getArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
 const Main = styled.main`
-  padding: 20px 2%;
+  margin: 20px 2%;
+  display: flex;
 `;
 
 const CardList = styled.ul<{ cardnumber: number }>`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.cardnumber}, 1fr);
-  justify-items: center;
+  grid-template-columns: repeat(${(props) => props.cardnumber}, 262px);
+  justify-items: stretch;
   gap: 15px;
+  margin: 0 auto;
+  /* width: 60%; */
 `;
 
-const Crard = styled.li`
+const Crad = styled.li`
   background-image: url(${thumbnail});
-  width: 262px;
   height: 262px;
   border-radius: 10px;
   border: 1px solid #fff;
@@ -53,20 +56,29 @@ const Writer = styled.span`
   font-size: 16px;
 `;
 
+const Wrap = styled.div`
+  /* display: flex;
+  justify-content: center; */
+`;
+
 export const ArticleList = () => {
   const MainElement = useRef<HTMLElement>(null);
 
   const cardWidth = 262;
 
-  const [cardNumber, setCardNumber] = useState(0);``
+  const [cardNumber, setCardNumber] = useState(
+    Math.floor(window.innerWidth / cardWidth)
+  );
 
   const handleResize = () => {
     if (MainElement.current) {
-      setCardNumber(Math.floor(MainElement.current.offsetWidth / cardWidth));
+      const gapSize =
+        (Math.floor(MainElement.current.offsetWidth / cardWidth) - 1) * 15;
+      setCardNumber(
+        Math.floor((MainElement.current.offsetWidth - gapSize) / cardWidth)
+      );
     }
   };
-
-  console.log(cardNumber);
 
   useEffect(() => {
     // 윈도우에 리사이즈 이벤트와 함수를 등록한다.
@@ -78,52 +90,43 @@ export const ArticleList = () => {
     };
   }, []);
 
+  type AricleType = {
+    title: string;
+    author: string;
+  };
+
+  const [articles, setArticles] = useState<AricleType[]>([]);
+
+  useEffect(() => {
+    getArticle()
+      .then((res) => {
+        setArticles(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log(articles);
+
   return (
-    <Main ref={MainElement}>
-      <CardList cardnumber={cardNumber}>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-        <Crard>
-          <ListInfro>
-            <Title> 제목 </Title>
-            <Writer> 작성자 </Writer>
-          </ListInfro>
-        </Crard>
-      </CardList>
-    </Main>
+    <Wrap>
+      <Main ref={MainElement}>
+        <CardList cardnumber={cardNumber}>
+          {articles.map((article) => {
+            return (
+              <>
+                <Crad>
+                  <ListInfro>
+                    <Title> {article.title} </Title>
+                    <Writer> {article.author} </Writer>
+                  </ListInfro>
+                </Crad>
+              </>
+            );
+          })}
+        </CardList>
+      </Main>
+    </Wrap>
   );
 };
