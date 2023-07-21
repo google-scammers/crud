@@ -101,8 +101,7 @@ export const ArticleModal: FC<Props> = ({
     <StyledModalBackground
       ref={backgroundRef}
       isModalVisible={isModalVisible}
-      onClick={(e: MouseEvent<HTMLDivElement>) => {
-        e.currentTarget.style.opacity = '0';
+      onClick={() => {
         setIsModalVisible(!isModalVisible);
       }}
     >
@@ -116,7 +115,6 @@ export const ArticleModal: FC<Props> = ({
           <StyledButton
             onClick={() => {
               if (backgroundRef.current) {
-                backgroundRef.current.style.opacity = '0';
                 setIsModalVisible(!isModalVisible);
               }
             }}
