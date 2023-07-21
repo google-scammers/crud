@@ -85,11 +85,13 @@ export const ArticleModal: FC<Props> = ({
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (backgroundRef.current)
+      backgroundRef.current.style.opacity = isModalVisible ? '1' : '0';
+
     const delayDisplayChange = setTimeout(() => {
       if (backgroundRef.current)
         backgroundRef.current.style.display = isModalVisible ? 'flex' : 'none';
     }, TRANSITION_DURATION * 1000);
-
     return () => {
       clearTimeout(delayDisplayChange);
     };
