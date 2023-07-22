@@ -38,7 +38,6 @@ export const uploadArticle = async (
   return res;
 };
 
-
 // Delete Article
 export const deleteArticle = async (
   id: number
@@ -46,6 +45,9 @@ export const deleteArticle = async (
   const res = await axiosInstance({
     url: `article/?id=${id}`,
     method: 'DELETE',
+  });
+  return res;
+};
 
 export const modifyArticle = async (
   id: number,
