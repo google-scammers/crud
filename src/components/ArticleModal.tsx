@@ -98,17 +98,14 @@ export const ArticleModal: FC<Props> = ({
   const user = useRecoilValue(userState);
 
   const handleClickDelete = () => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      deleteArticle(article.id, token)
-        .then(() => {
-          setIsDeleteArticle((value) => !value);
-          setIsModalVisible(!isModalVisible);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    deleteArticle(article.id)
+      .then(() => {
+        setIsDeleteArticle((value) => !value);
+        setIsModalVisible(!isModalVisible);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
