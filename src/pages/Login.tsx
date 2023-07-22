@@ -28,11 +28,12 @@ const ButtonWrapper = styled.div`
   bottom: 52px;
 `;
 
-const SignUpButton = styled.div`
-  width: 100%;
-  text-align: end;
-  color: ${colors.grey600};
+const TextButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
   margin-top: 14px;
+  color: ${colors.grey600};
+  font-weight: 500;
 `;
 
 export const Login = () => {
@@ -89,9 +90,9 @@ export const Login = () => {
             bottomText={passwordValidation.errorMessage}
             validation={false}
           />
-          <Link to="/crud/signup">
-            <SignUpButton>회원가입</SignUpButton>
-          </Link>
+          <TextButtonWrapper>
+            <Link to="/crud/signup">회원가입</Link>
+          </TextButtonWrapper>
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="로그인" />

@@ -22,11 +22,12 @@ const ButtonWrapper = styled.div`
   bottom: 52px;
 `;
 
-const SignUpButton = styled.div`
-  width: 100%;
-  text-align: end;
-  color: ${colors.grey600};
+const TextButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
   margin-top: 14px;
+  color: ${colors.grey600};
+  font-weight: 500;
 `;
 
 const Signup = () => {
@@ -96,9 +97,9 @@ const Signup = () => {
             bottomText={passwordToCompareValidation.errorMessage}
             validation={true}
           />
-          <Link to="/crud/login">
-            <SignUpButton>로그인</SignUpButton>
-          </Link>
+          <TextButtonWrapper>
+            <Link to="/crud/login">로그인</Link>
+          </TextButtonWrapper>
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="회원가입" />
