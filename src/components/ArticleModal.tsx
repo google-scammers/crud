@@ -1,6 +1,8 @@
 import { FC, MouseEvent, useEffect, useRef } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'recoil/user';
 import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
@@ -93,6 +95,7 @@ export const ArticleModal: FC<Props> = ({
   const backgroundRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
+  const user = useRecoilValue(userState);
 
   const handleClickDelete = () => {
     const token = localStorage.getItem('accessToken');
@@ -174,11 +177,13 @@ export const ArticleModal: FC<Props> = ({
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>
-        <DeleteButtonWrapper>
-          <StyledButton onClick={handleClickDelete}>
-            <BsFillTrashFill />
-          </StyledButton>
-        </DeleteButtonWrapper>
+        {article.author === user?.email ? (
+          <DeleteButtonWrapper>
+            <StyledButton onClick={handleClickDelete}>
+              <BsFillTrashFill />
+            </StyledButton>
+          </DeleteButtonWrapper>
+        ) : null}
       </StyledModal>
     </StyledModalBackground>
   );
