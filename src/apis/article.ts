@@ -4,8 +4,11 @@ import { axiosInstance } from './config';
 import { Temp } from './user';
 
 export type Article = {
-  title: string;
+  id: number;
   author: string;
+  title: string;
+  content: string;
+  created_at: Date;
 };
 
 /*

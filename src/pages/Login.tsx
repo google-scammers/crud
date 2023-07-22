@@ -1,13 +1,13 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
 import { AuthInput } from 'components/AuthInput';
 import { SubmitButton } from 'components/SubmitButton';
-import { colors } from 'constants/colors';
+import { TextButton } from 'components/TextButton';
 
 import { login } from '../apis/user';
 import { userState } from '../recoil/user';
@@ -26,13 +26,6 @@ const InputContainer = styled.div`
 const ButtonWrapper = styled.div`
   position: absolute;
   bottom: 52px;
-`;
-
-const SignUpButton = styled.div`
-  width: 100%;
-  text-align: end;
-  color: ${colors.grey600};
-  margin-top: 14px;
 `;
 
 export const Login = () => {
@@ -89,9 +82,7 @@ export const Login = () => {
             bottomText={passwordValidation.errorMessage}
             validation={false}
           />
-          <Link to="/crud/signup">
-            <SignUpButton>회원가입</SignUpButton>
-          </Link>
+          <TextButton text="회원가입" />
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="로그인" />
