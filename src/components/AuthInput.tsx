@@ -34,13 +34,12 @@ const Input = styled.input`
   line-height: 58px;
   margin: 0;
   outline: none;
-  border: none;
+  border: 2px solid ${colors.grey400};
   border-radius: 8px;
-  background-color: ${colors.white};
-  box-shadow: inset 0 0 0 1px ${colors.greyOpacity400};
+  transition: 0.2s all ease-out 0s;
 
   &:focus {
-    box-shadow: inset 0 0 0 2px ${colors.blue500};
+    border: 2px solid ${colors.blue400};
   }
 `;
 
