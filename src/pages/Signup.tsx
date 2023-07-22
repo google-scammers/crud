@@ -1,12 +1,12 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
 import { AuthInput } from 'components/AuthInput';
 import { SubmitButton } from 'components/SubmitButton';
-import { colors } from 'constants/colors';
+import { TextButton } from 'components/TextButton';
 
 import { signup } from '../apis/user';
 
@@ -20,14 +20,6 @@ const InputContainer = styled.div`
 const ButtonWrapper = styled.div`
   position: absolute;
   bottom: 52px;
-`;
-
-const TextButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 14px;
-  color: ${colors.grey600};
-  font-weight: 500;
 `;
 
 const Signup = () => {
@@ -97,9 +89,7 @@ const Signup = () => {
             bottomText={passwordToCompareValidation.errorMessage}
             validation={true}
           />
-          <TextButtonWrapper>
-            <Link to="/crud/login">로그인</Link>
-          </TextButtonWrapper>
+          <TextButton text="로그인" />
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="회원가입" />
