@@ -140,10 +140,7 @@ export const ArticleList = () => {
         <ArticleModal
           isModalVisible={isModalVisible}
           setIsModalVisible={setIsModalVisible}
-          author={currentArticle.author}
-          title={currentArticle.title}
-          created_at={currentArticle.created_at}
-          content={currentArticle.content}
+          article={currentArticle}
         />
       ) : null}
     </Wrap>
