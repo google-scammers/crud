@@ -89,7 +89,7 @@ const Signup = () => {
             bottomText={passwordToCompareValidation.errorMessage}
             validation={true}
           />
-          <TextButton text="로그인" />
+          <TextButton to="/crud/login" text="로그인" />
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="회원가입" />

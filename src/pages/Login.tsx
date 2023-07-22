@@ -82,7 +82,7 @@ export const Login = () => {
             bottomText={passwordValidation.errorMessage}
             validation={false}
           />
-          <TextButton text="회원가입" />
+          <TextButton to="/crud/signup" text="회원가입" />
         </InputContainer>
         <ButtonWrapper>
           <SubmitButton text="로그인" />
