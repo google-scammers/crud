@@ -1,12 +1,5 @@
 import { Article, modifyArticle, uploadArticle } from 'apis/article';
-import {
-  FC,
-  PropsWithChildren,
-  FormEvent,
-  useEffect,
-  useState,
-  ChangeEvent,
-} from 'react';
+import { FC, PropsWithChildren, FormEvent, useState, ChangeEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'recoil/user';
@@ -87,19 +80,13 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
 
   const [formState, setFormState] = useState<ArticleModifyData>(locationState);
 
-  useEffect(() => {
-    if (location.pathname === '/crud/modify/')
-      setFormState(location.state as ArticleModifyData);
-  }, []);
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
     if (location.pathname === '/crud/modify/') {
       modifyArticle(formState.id, formData)
-        .then((res) => {
-          localStorage.setItem('accessToken', res.data.accessToken);
+        .then(() => {
           navigate('/crud');
         })
         .catch((err) => {
