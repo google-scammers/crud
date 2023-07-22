@@ -39,12 +39,14 @@ export const uploadArticle = async (
 };
 
 // Delete Article
-export const deleteArticle = async (): Promise<AxiosResponse<Temp>> => {
+export const deleteArticle = async (
+  accessToken: string
+): Promise<AxiosResponse<Temp>> => {
   const res = await axiosInstance({
     url: 'article',
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + accessToken,
     },
   });
   return res;

@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
 
-import { Article } from '../apis/article';
+import { Article, deleteArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
 // time unit = 200ms (0.2s)
@@ -92,6 +92,19 @@ export const ArticleModal: FC<Props> = ({
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
 
+  const handleClickDelete = () => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      deleteArticle(token)
+        .then(() => {
+          setIsModalVisible(!isModalVisible);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   useEffect(() => {
     if (backgroundRef.current)
       backgroundRef.current.style.opacity = isModalVisible ? '1' : '0';
@@ -159,13 +172,7 @@ export const ArticleModal: FC<Props> = ({
           </StyledRight>
         </div>
         <DeleteButtonWrapper>
-          <StyledButton
-            onClick={() => {
-              if (backgroundRef.current) {
-                setIsModalVisible(!isModalVisible);
-              }
-            }}
-          >
+          <StyledButton onClick={handleClickDelete}>
             <BsFillTrashFill />
           </StyledButton>
         </DeleteButtonWrapper>
