@@ -95,7 +95,7 @@ export const ArticleModal: FC<Props> = ({
   const handleClickDelete = () => {
     const token = localStorage.getItem('accessToken');
     if (token) {
-      deleteArticle(token)
+      deleteArticle(article.id, token)
         .then(() => {
           setIsModalVisible(!isModalVisible);
         })
