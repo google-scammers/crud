@@ -40,10 +40,11 @@ export const uploadArticle = async (
 
 // Delete Article
 export const deleteArticle = async (
+  id: number,
   accessToken: string
 ): Promise<AxiosResponse<Temp>> => {
   const res = await axiosInstance({
-    url: 'article',
+    url: `article/?id=${id}`,
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + accessToken,
