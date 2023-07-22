@@ -80,6 +80,7 @@ type Props = {
   article: Article;
   isModalVisible: boolean;
   setIsModalVisible: (value: boolean) => void;
+  setIsDeleteArticle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ArticleModal: FC<Props> = ({
@@ -87,6 +88,7 @@ export const ArticleModal: FC<Props> = ({
   setIsModalVisible,
   image = null,
   article,
+  setIsDeleteArticle,
 }) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -97,6 +99,7 @@ export const ArticleModal: FC<Props> = ({
     if (token) {
       deleteArticle(article.id, token)
         .then(() => {
+          setIsDeleteArticle((value) => !value);
           setIsModalVisible(!isModalVisible);
         })
         .catch((err) => {

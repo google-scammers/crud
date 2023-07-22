@@ -82,6 +82,7 @@ export const ArticleList = () => {
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [currentArticle, setCurrentArticle] = useState<ArticleType>();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isDeleteArticle, setIsDeleteArticle] = useState(false);
 
   const handleResize = () => {
     console.log(MainElement.current);
@@ -116,7 +117,7 @@ export const ArticleList = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isDeleteArticle]);
 
   console.log(isModalVisible);
 
@@ -138,6 +139,7 @@ export const ArticleList = () => {
       </Main>
       {currentArticle ? (
         <ArticleModal
+          setIsDeleteArticle={setIsDeleteArticle}
           isModalVisible={isModalVisible}
           setIsModalVisible={setIsModalVisible}
           article={currentArticle}
