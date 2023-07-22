@@ -38,6 +38,7 @@ export const uploadArticle = async (
   return res;
 };
 
+
 // Delete Article
 export const deleteArticle = async (
   id: number
@@ -45,6 +46,19 @@ export const deleteArticle = async (
   const res = await axiosInstance({
     url: `article/?id=${id}`,
     method: 'DELETE',
+
+export const modifyArticle = async (
+  id: number,
+  data: FormData
+): Promise<AxiosResponse<Temp>> => {
+  console.log('query id:', id);
+  const res = await axiosInstance({
+    url: `article/?id=${id}`,
+    method: 'PATCH',
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
   return res;
 };
