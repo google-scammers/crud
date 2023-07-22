@@ -1,6 +1,9 @@
 import { FC, MouseEvent, useEffect, useRef } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+
+import { colors } from 'constants/colors';
 
 import { Article } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
@@ -38,7 +41,14 @@ const StyledControlBox = styled.div`
   display: flex;
   gap: 10px;
 `;
+const DeleteButtonWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+`;
 const StyledButton = styled.button`
+  color: ${colors.grey500};
   cursor: pointer;
   transition: 0.2s all ease-in-out 0s;
   &:hover {
@@ -148,6 +158,17 @@ export const ArticleModal: FC<Props> = ({
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>
+        <DeleteButtonWrapper>
+          <StyledButton
+            onClick={() => {
+              if (backgroundRef.current) {
+                setIsModalVisible(!isModalVisible);
+              }
+            }}
+          >
+            <BsFillTrashFill />
+          </StyledButton>
+        </DeleteButtonWrapper>
       </StyledModal>
     </StyledModalBackground>
   );
