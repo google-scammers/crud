@@ -19,7 +19,7 @@ const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
   right: 0;
   bottom: 0;
   z-index: 10;
-  position: absolute;
+  position: fixed;
   display: flex;
   background-color: rgba(0, 0, 0, 0.3);
   opacity: ${(props) => (props.isModalVisible ? '1' : '0')};
@@ -109,6 +109,8 @@ export const ArticleModal: FC<Props> = ({
   };
 
   useEffect(() => {
+    document.body.style.overflowY = isModalVisible ? 'hidden' : 'visible';
+
     if (backgroundRef.current)
       backgroundRef.current.style.opacity = isModalVisible ? '1' : '0';
 
