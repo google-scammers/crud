@@ -1,4 +1,8 @@
-import { useState, FC, PropsWithChildren } from 'react';
+import { uploadArticle } from 'apis/article';
+import { FC, PropsWithChildren, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'recoil/user';
 import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
@@ -66,45 +70,34 @@ const BtnWrap = styled.div`
   justify-content: end;
 `;
 
-type Article = {
-  title: string | number;
-  content: string | number;
-};
-
 export const ArticleForm: FC<PropsWithChildren> = () => {
-  const [articleData, setArticleData] = useState<Article>({
-    title: '',
-    content: '',
-  });
+  const user = useRecoilValue(userState);
 
-  const handleSubmit = () => {};
+  const navigate = useNavigate();
 
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { value, name } = e.target;
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    setArticleData({
-      ...articleData,
-      [name]: value,
-    });
+    const formData = new FormData(e.currentTarget);
+    if (user) {
+      formData.append('author', user?.email);
+      console.log(formData);
+      uploadArticle(formData)
+        .then(() => {
+          navigate('/crud');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
         <InputWrap>
-          <TitleInput
-            type="text"
-            name="title"
-            placeholder="제목"
-            onChange={onChange}
-          />
-          <ContentsInput
-            name="content"
-            placeholder="내용"
-            onChange={onChange}
-          ></ContentsInput>
+          <TitleInput type="text" name="title" placeholder="제목" />
+          <ContentsInput name="content" placeholder="내용"></ContentsInput>
           <FileInput type="file" />
         </InputWrap>
 

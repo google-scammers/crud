@@ -5,6 +5,9 @@ import { axiosInstance } from './config';
 export type User = {
   email: string;
 };
+export type Temp = {
+  accessToken: string;
+};
 
 export const getUser = async (
   accessToken: string
