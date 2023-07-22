@@ -1,6 +1,13 @@
-import { uploadArticle } from 'apis/article';
-import { FC, PropsWithChildren, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Article, modifyArticle, uploadArticle } from 'apis/article';
+import {
+  FC,
+  PropsWithChildren,
+  FormEvent,
+  useEffect,
+  useState,
+  ChangeEvent,
+} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'recoil/user';
 import { styled } from 'styled-components';
@@ -8,6 +15,8 @@ import { styled } from 'styled-components';
 import { colors } from 'constants/colors';
 
 import { SubmitButton } from './SubmitButton';
+
+type ArticleModifyData = Pick<Article, 'id' | 'title' | 'content'>;
 
 const Section = styled.section`
   height: 88vh;
@@ -72,16 +81,32 @@ const BtnWrap = styled.div`
 
 export const ArticleForm: FC<PropsWithChildren> = () => {
   const user = useRecoilValue(userState);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const locationState = location.state as ArticleModifyData;
+
+  const [formState, setFormState] = useState<ArticleModifyData>(locationState);
+
+  useEffect(() => {
+    if (location.pathname === '/crud/modify/')
+      setFormState(location.state as ArticleModifyData);
+  }, []);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
-    if (user) {
+
+    if (location.pathname === '/crud/modify/') {
+      modifyArticle(formState.id, formData)
+        .then((res) => {
+          localStorage.setItem('accessToken', res.data.accessToken);
+          navigate('/crud');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (user) {
       formData.append('author', user?.email);
-      console.log(formData);
       uploadArticle(formData)
         .then(() => {
           navigate('/crud');
@@ -96,8 +121,23 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
     <Section>
       <Form onSubmit={handleSubmit}>
         <InputWrap>
-          <TitleInput type="text" name="title" placeholder="제목" />
-          <ContentsInput name="content" placeholder="내용"></ContentsInput>
+          <TitleInput
+            type="text"
+            name="title"
+            placeholder="제목"
+            value={formState && formState.title}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormState({ ...formState, title: e.currentTarget.value })
+            }
+          />
+          <ContentsInput
+            name="content"
+            placeholder="내용"
+            value={formState && formState.content}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+              setFormState({ ...formState, content: e.currentTarget.value });
+            }}
+          ></ContentsInput>
           <FileInput type="file" />
         </InputWrap>
 
