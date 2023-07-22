@@ -57,6 +57,10 @@ module.exports = {
             pattern: 'components/*',
             group: 'internal',
           },
+          {
+            pattern: 'constants/*',
+            group: 'internal',
+          },
         ],
 
         pathGroupsExcludedImportTypes: ['react', 'unknown'],

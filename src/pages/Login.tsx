@@ -1,6 +1,7 @@
 import { useInput } from 'hooks/useInput';
 import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 import { AuthForm } from 'components/AuthForm';
@@ -8,13 +9,18 @@ import { AuthInput } from 'components/AuthInput';
 import { SubmitButton } from 'components/SubmitButton';
 import { TextButton } from 'components/TextButton';
 
-import { signup } from '../apis/user';
+import { login } from '../apis/user';
+import { userState } from '../recoil/user';
 
 const InputContainer = styled.div`
   width: 80%;
   position: relative;
   display: flex;
   flex-direction: column;
+
+  input {
+    margin-top: 10px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -22,7 +28,7 @@ const ButtonWrapper = styled.div`
   bottom: 52px;
 `;
 
-const Signup = () => {
+export const Login = () => {
   const {
     inputValue: emailInputValue,
     onChange: onChangeEmail,
@@ -33,21 +39,18 @@ const Signup = () => {
     onChange: onChangePassword,
     validation: passwordValidation,
   } = useInput('', 'password');
-  const {
-    inputValue: passwordToCompareInputValue,
-    onChange: onChangePasswordToCompare,
-    validation: passwordToCompareValidation,
-  } = useInput('', 'confirm_password', passwordInputValue);
 
   const navigate = useNavigate();
+  const setUser = useSetRecoilState(userState);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     console.log(formData);
-    signup(formData)
-      .then(() => {
+    login(formData)
+      .then((res) => {
+        setUser({ email: res.data.email });
         navigate('/crud');
       })
       .catch((err) => {
@@ -67,7 +70,7 @@ const Signup = () => {
             onChange={onChangeEmail}
             value={emailInputValue}
             bottomText={emailValidation.errorMessage}
-            validation={true}
+            validation={false}
           />
           <AuthInput
             type="password"
@@ -77,26 +80,14 @@ const Signup = () => {
             onChange={onChangePassword}
             value={passwordInputValue}
             bottomText={passwordValidation.errorMessage}
-            validation={true}
+            validation={false}
           />
-          <AuthInput
-            type="password"
-            label="confirm password"
-            id="confirm_password"
-            name="confirm_password"
-            onChange={onChangePasswordToCompare}
-            value={passwordToCompareInputValue}
-            bottomText={passwordToCompareValidation.errorMessage}
-            validation={true}
-          />
-          <TextButton to="/crud/login" text="로그인" />
+          <TextButton to="/crud/signup" text="회원가입" />
         </InputContainer>
         <ButtonWrapper>
-          <SubmitButton text="회원가입" />
+          <SubmitButton text="로그인" />
         </ButtonWrapper>
       </AuthForm>
     </div>
   );
 };
-
-export default Signup;
