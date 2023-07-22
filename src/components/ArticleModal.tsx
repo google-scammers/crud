@@ -9,8 +9,6 @@ import { colors } from 'constants/colors';
 
 import { Article, deleteArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
-import { useRecoilValue } from 'recoil';
-import { userState } from '../recoil/user';
 
 // time unit = 200ms (0.2s)
 const TRANSITION_DURATION = 0.2;
@@ -94,7 +92,6 @@ export const ArticleModal: FC<Props> = ({
   article,
   setIsDeleteArticle,
 }) => {
-  const user = useRecoilValue(userState);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
