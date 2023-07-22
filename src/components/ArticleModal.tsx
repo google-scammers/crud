@@ -1,4 +1,5 @@
 import { FC, MouseEvent, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { Article } from '../apis/article';
@@ -78,6 +79,7 @@ export const ArticleModal: FC<Props> = ({
   article,
 }) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
 
   useEffect(() => {
@@ -112,7 +114,15 @@ export const ArticleModal: FC<Props> = ({
         }}
       >
         <StyledControlBox>
-          <StyledButton>edit</StyledButton>
+          <StyledButton
+            onClick={() => {
+              navigate('/crud/modify', {
+                state: article,
+              });
+            }}
+          >
+            edit
+          </StyledButton>
           <StyledButton
             onClick={() => {
               if (backgroundRef.current) {

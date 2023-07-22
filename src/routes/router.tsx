@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { ArticleList } from 'components/ArticleList';
-import { ArticleWrite } from 'pages/ArticleWrite';
 import Home from 'pages/Home';
 import { Login } from 'pages/Login';
 import Signup from 'pages/Signup';
 
 import { getUser } from '../apis/user';
+import { ArticleForm } from '../components/ArticleForm';
 
 const authLogin = async () => {
   const token = localStorage.getItem('accessToken');
@@ -45,7 +45,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'write',
-        element: <ArticleWrite />,
+        element: <ArticleForm />,
+      },
+      {
+        path: 'modify',
+        element: <ArticleForm />,
       },
     ],
   },
