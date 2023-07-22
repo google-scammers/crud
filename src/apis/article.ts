@@ -37,3 +37,19 @@ export const uploadArticle = async (
   });
   return res;
 };
+
+export const modifyArticle = async (
+  id: number,
+  data: FormData
+): Promise<AxiosResponse<Temp>> => {
+  console.log('query id:', id);
+  const res = await axiosInstance({
+    url: `article/?id=${id}`,
+    method: 'PATCH',
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res;
+};
