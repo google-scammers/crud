@@ -4,10 +4,10 @@ import { styled } from 'styled-components';
 /* import { colors } from "constants/colors"; */
 
 const Section = styled.section`
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 `;
 
 const Wrap = styled.div`
