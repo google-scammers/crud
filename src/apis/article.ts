@@ -38,6 +38,15 @@ export const uploadArticle = async (
   return res;
 };
 
+
+// Delete Article
+export const deleteArticle = async (
+  id: number
+): Promise<AxiosResponse<Temp>> => {
+  const res = await axiosInstance({
+    url: `article/?id=${id}`,
+    method: 'DELETE',
+
 export const modifyArticle = async (
   id: number,
   data: FormData

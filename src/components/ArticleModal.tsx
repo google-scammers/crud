@@ -1,8 +1,13 @@
 import { FC, MouseEvent, useEffect, useRef } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'recoil/user';
 import { styled } from 'styled-components';
 
-import { Article } from '../apis/article';
+import { colors } from 'constants/colors';
+
+import { Article, deleteArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../recoil/user';
@@ -40,7 +45,14 @@ const StyledControlBox = styled.div`
   display: flex;
   gap: 10px;
 `;
+const DeleteButtonWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+`;
 const StyledButton = styled.button`
+  color: ${colors.grey500};
   cursor: pointer;
   transition: 0.2s all ease-in-out 0s;
   &:hover {
@@ -72,6 +84,7 @@ type Props = {
   article: Article;
   isModalVisible: boolean;
   setIsModalVisible: (value: boolean) => void;
+  setIsDeleteArticle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ArticleModal: FC<Props> = ({
@@ -79,11 +92,24 @@ export const ArticleModal: FC<Props> = ({
   setIsModalVisible,
   image = null,
   article,
+  setIsDeleteArticle,
 }) => {
   const user = useRecoilValue(userState);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
+  const user = useRecoilValue(userState);
+
+  const handleClickDelete = () => {
+    deleteArticle(article.id)
+      .then(() => {
+        setIsDeleteArticle((value) => !value);
+        setIsModalVisible(!isModalVisible);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     if (backgroundRef.current)
@@ -159,6 +185,13 @@ export const ArticleModal: FC<Props> = ({
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>
+        {article.author === user?.email ? (
+          <DeleteButtonWrapper>
+            <StyledButton onClick={handleClickDelete}>
+              <BsFillTrashFill />
+            </StyledButton>
+          </DeleteButtonWrapper>
+        ) : null}
       </StyledModal>
     </StyledModalBackground>
   );
