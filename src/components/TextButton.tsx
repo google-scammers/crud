@@ -12,13 +12,14 @@ const TextButtonWrapper = styled.div`
 `;
 
 type Props = {
+  to: string;
   text: string;
 };
 
-export const TextButton = ({ text }: Props) => {
+export const TextButton = ({ to, text }: Props) => {
   return (
     <TextButtonWrapper>
-      <Link to="/crud/login">{text}</Link>
+      <Link to={to}>{text}</Link>
     </TextButtonWrapper>
   );
 };
