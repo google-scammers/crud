@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 
+import { Article } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
 // time unit = 200ms (0.2s)
@@ -65,10 +66,7 @@ const StyledContent = styled.p``;
 
 type Props = {
   image?: string;
-  title: string;
-  author: string;
-  content: string;
-  created_at: Date;
+  article: Article;
   isModalVisible: boolean;
   setIsModalVisible: (value: boolean) => void;
 };
@@ -77,12 +75,10 @@ export const ArticleModal: FC<Props> = ({
   isModalVisible,
   setIsModalVisible,
   image = null,
-  author,
-  title,
-  created_at,
-  content,
+  article,
 }) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const { title, author, created_at: createdAt, content } = article;
 
   useEffect(() => {
     if (backgroundRef.current)
@@ -138,7 +134,7 @@ export const ArticleModal: FC<Props> = ({
           <StyledRight>
             <StyledTitle>{title}</StyledTitle>
             <StyledAuthor>{author}</StyledAuthor>
-            <StyledDate>{created_at.toString()}</StyledDate>
+            <StyledDate>{createdAt.toString()}</StyledDate>
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </div>
