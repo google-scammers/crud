@@ -34,3 +34,15 @@ export const uploadArticle = async (
   });
   return res;
 };
+
+// Delete Article
+export const deleteArticle = async (): Promise<AxiosResponse<Temp>> => {
+  const res = await axiosInstance({
+    url: 'article',
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res;
+};
