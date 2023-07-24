@@ -125,7 +125,7 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
             placeholder="내용"
             value={formState && formState.content}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              formState &&
+              if (formState)
                 setFormState({ ...formState, content: e.currentTarget.value });
             }}
           ></ContentsInput>

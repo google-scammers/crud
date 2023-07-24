@@ -150,6 +150,8 @@ export const ArticleModal: FC<Props> = ({
       setWindowScrollY(scrollY);
       document.body.style.top = '-' + String(scrollY) + 'px';
     } else if (!isModalVisible) {
+      document.body.style.top = '0px';
+      setWindowScrollY(0);
       window.scrollTo({ behavior: 'instant', top: windowScrollY });
     }
 
@@ -176,6 +178,7 @@ export const ArticleModal: FC<Props> = ({
       return (
         <StyledButton
           onClick={() => {
+            setIsModalVisible(false);
             navigate(`/crud/modify/?id=${article.id}`, {
               state: article,
             });
