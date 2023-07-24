@@ -9,23 +9,26 @@
 - client는 github pages를 통해 배포하였고, server는 heroku를 통해 배포하였습니다.
 - 인증 인가는 access token 을 사용하여 구현했습니다.
 
-> 회원가입, 로그인
-> <img src="https://hackmd.io/_uploads/r1xhOTjc2.gif" width="600px"/>
+<table>
+ <tr align="center">
+    <td>회원가입, 로그인</a></td>
+    <td>게시글 쓰기</a></td>
+    <td>게시글 수정, 삭제</a></td>
+  </tr>
 
-> 게시글 쓰기
-> <img src="https://hackmd.io/_uploads/r1jJ9_3c2.gif" width="600px"/>
+<tr align="center">
+    <td><img src="https://hackmd.io/_uploads/r1xhOTjc2.gif" width="300px"/></td>
+    <td><img src="https://hackmd.io/_uploads/r1jJ9_3c2.gif" width="300px"/></td>
+    <td><img src="https://hackmd.io/_uploads/SkXmYu2qn.gif" width="300px"/></td>
+  </tr>
 
-> 게시글 수정, 삭제
-> <img src="https://hackmd.io/_uploads/SkXmYu2qn.gif" width="600px"/>
+<table/>
+
 
  <br>
  
 ## 사용 기술스택
-<img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> 
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> 
-<img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"> 
-<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=GitHub-Actions&logoColor=white"/>
+<img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=GitHub-Actions&logoColor=white"/>
 <br>
 <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"> 
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> 
