@@ -9,21 +9,31 @@
 - client는 github pages를 통해 배포하였고, server는 heroku를 통해 배포하였습니다.
 - 인증 인가는 access token 을 사용하여 구현했습니다.
 
+
 <table>
  <tr align="center">
     <td>회원가입, 로그인</a></td>
-    <td>게시글 쓰기</a></td>
-    <td>게시글 수정, 삭제</a></td>
-  </tr>
-
-<tr align="center">
-    <td><img src="https://hackmd.io/_uploads/r1xhOTjc2.gif" width="300px"/></td>
-    <td><img src="https://hackmd.io/_uploads/r1jJ9_3c2.gif" width="300px"/></td>
-    <td><img src="https://hackmd.io/_uploads/SkXmYu2qn.gif" width="300px"/></td>
-  </tr>
-
+ </tr>
+ <tr align="center">
+    <td><img src="https://hackmd.io/_uploads/r1xhOTjc2.gif" width="500px"/></td>
+ </tr>
 <table/>
-
+<table>
+ <tr align="center">
+    <td>게시글 쓰기</a></td>
+ </tr>
+ <tr align="center">
+    <td><img src="https://hackmd.io/_uploads/r1jJ9_3c2.gif" width="500px"/></td>
+ </tr>
+<table/>
+<table>
+ <tr align="center">
+    <td>게시글 수정, 삭제</a></td>
+ </tr>
+ <tr align="center">
+    <td><img src="https://hackmd.io/_uploads/SkXmYu2qn.gif" width="500px"/></td>
+ </tr>
+<table/>
 
  <br>
  
