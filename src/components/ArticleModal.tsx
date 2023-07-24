@@ -84,7 +84,7 @@ const StyledRight = styled.div`
   gap: 15px;
   @media (max-width: 800px) {
     margin-left: 5px;
-    align-items: center;
+    align-items: baseline;
   }
 `;
 const StyledTitle = styled.h1`
@@ -114,6 +114,14 @@ export const ArticleModal: FC<Props> = ({
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
   const user = useRecoilValue(userState);
+
+  const date = new Date(createdAt);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const formattedDate = `${year}-${month}-${day}`;
+
+  /* console.log(formattedDate); */
 
   const handleClickDelete = () => {
     deleteArticle(article.id)
@@ -194,7 +202,7 @@ export const ArticleModal: FC<Props> = ({
           <StyledRight>
             <StyledTitle>{title}</StyledTitle>
             <StyledAuthor>{author}</StyledAuthor>
-            <StyledDate>{createdAt.toString()}</StyledDate>
+            <StyledDate>{formattedDate}</StyledDate>
             <StyledContent>{content}</StyledContent>
           </StyledRight>
         </StyledModalBody>
