@@ -12,6 +12,7 @@ import thumbnail from '../assets/image/thumbnail.jpg';
 
 // time unit = 200ms (0.2s)
 const TRANSITION_DURATION = 0.2;
+const RESPONSIVE_BREAK_POINT = '1900px';
 
 const StyledModalBackground = styled.div<{ ismodalvisible: string }>`
   top: 0;
@@ -26,6 +27,7 @@ const StyledModalBackground = styled.div<{ ismodalvisible: string }>`
   align-items: center;
   justify-content: center;
   transition: ${TRANSITION_DURATION.toString() + 's all ease-out 0s'};
+  padding: 0 15px;
 `;
 const StyledModal = styled.div`
   width: 976px;
@@ -35,13 +37,27 @@ const StyledModal = styled.div`
   background-color: white;
   padding: 42px;
   box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
+    width: 500px;
+    height: 600px;
+  }
 `;
-const StyledControlBox = styled.div`
+const StyledModalHeader = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
   display: flex;
   gap: 10px;
+`;
+const StyledModalBody = styled.div`
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+
+  overflow: scroll;
+
+  height: 100%;
 `;
 const DeleteButtonWrapper = styled.div`
   position: absolute;
@@ -62,12 +78,21 @@ const StyledLeft = styled.div<{ image: string | null }>`
   background-image: url(${(props) => (props.image ? props.image : thumbnail)});
   background-position: center;
   background-size: cover;
+  /* background-size: 100%; */
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
+    height: 75%;
+  }
 `;
 const StyledRight = styled.div`
   margin-left: 42px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
+    margin-left: 5px;
+    margin-top: 20px;
+    align-items: baseline;
+  }
 `;
 const StyledTitle = styled.h1`
   font-size: 20px;
@@ -97,6 +122,12 @@ export const ArticleModal: FC<Props> = ({
   const { title, author, created_at: createdAt, content } = article;
   const user = useRecoilValue(userState);
   const [windowScrollY, setWindowScrollY] = useState(window.scrollY);
+
+  const date = new Date(createdAt);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const formattedDate = `${year}-${month}-${day}`;
 
   const handleClickDelete = () => {
     deleteArticle(article.id)
@@ -169,7 +200,7 @@ export const ArticleModal: FC<Props> = ({
           e.stopPropagation();
         }}
       >
-        <StyledControlBox>
+        <StyledModalHeader>
           {controlEditButtonVisibility()}
           <StyledButton
             onClick={() => {
@@ -180,22 +211,16 @@ export const ArticleModal: FC<Props> = ({
           >
             close
           </StyledButton>
-        </StyledControlBox>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            height: '100%',
-          }}
-        >
+        </StyledModalHeader>
+        <StyledModalBody>
           <StyledLeft image={image} />
           <StyledRight>
             <StyledTitle>{title}</StyledTitle>
             <StyledAuthor>{author}</StyledAuthor>
-            <StyledDate>{createdAt.toString()}</StyledDate>
+            <StyledDate>{formattedDate}</StyledDate>
             <StyledContent>{content}</StyledContent>
           </StyledRight>
-        </div>
+        </StyledModalBody>
         {article.author === user?.email ? (
           <DeleteButtonWrapper>
             <StyledButton onClick={handleClickDelete}>

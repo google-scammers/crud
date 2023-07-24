@@ -8,6 +8,7 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  padding: 0 10px;
 `;
 
 const Wrap = styled.div`
@@ -18,6 +19,9 @@ const Wrap = styled.div`
   width: 524px;
   height: 617px;
   padding-top: 80px;
+  @media (max-width: 400px) {
+    height: 545px;
+  }
 `;
 
 const Title = styled.h2`
