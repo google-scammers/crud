@@ -39,9 +39,7 @@ export const Navbar = () => {
     setUser({ email });
   }, [email]);
 
-  const checkUser = () => {
-    return email || user?.email;
-  };
+  const isUser = (() => email || user?.email)();
 
   const handleSignOut = () => {
     localStorage.clear();
@@ -59,13 +57,18 @@ export const Navbar = () => {
           gap: '10px',
         }}
       >
-        {checkUser() ? (
+        {isUser ? (
+          <li>
+            <span style={{ color: colors.grey500 }}>{user?.email}</span>
+          </li>
+        ) : null}
+        {isUser ? (
           <li>
             <Link to={'write'}>글쓰기</Link>
           </li>
         ) : null}
         <li>
-          {checkUser() ? (
+          {isUser ? (
             <StyledSignOut onClick={handleSignOut}>로그아웃</StyledSignOut>
           ) : (
             <Link to={'login'}>로그인</Link>
