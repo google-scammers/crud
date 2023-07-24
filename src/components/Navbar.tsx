@@ -6,29 +6,29 @@ import { styled } from 'styled-components';
 import { colors } from '../constants/colors';
 import { userState } from '../recoil/user';
 
-export const Navbar = () => {
-  const StyledNav = styled.nav`
+const StyledNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 20px;
+  font-size: 30px;
+  border-bottom: 1px ${colors.grey300} solid;
+
+  & > ul {
     display: flex;
-    justify-content: space-between;
-    padding: 25px 20px;
-    font-size: 30px;
-    border-bottom: 1px ${colors.grey300} solid;
+    padding: 0;
+    font-size: 23px;
 
-    & > ul {
+    & > li {
       display: flex;
-      padding: 0;
-      font-size: 23px;
-
-      & > li {
-        display: flex;
-        align-items: center;
-      }
+      align-items: center;
     }
-  `;
-  const StyledSignOut = styled.button`
-    cursor: pointer;
-  `;
+  }
+`;
+const StyledSignOut = styled.button`
+  cursor: pointer;
+`;
 
+export const Navbar = () => {
   const res = useLoaderData() as { data: { email: string } };
   const email = res && res.data.email;
 
