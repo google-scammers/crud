@@ -26,6 +26,7 @@ const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
   align-items: center;
   justify-content: center;
   transition: ${TRANSITION_DURATION.toString() + 's all ease-out 0s'};
+  padding: 0 15px;
 `;
 const StyledModal = styled.div`
   width: 976px;
@@ -36,12 +37,22 @@ const StyledModal = styled.div`
   padding: 42px;
   box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
 `;
-const StyledControlBox = styled.div`
+const StyledModalHeader = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
   display: flex;
   gap: 10px;
+`;
+const StyledModalBody = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100%;
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 const DeleteButtonWrapper = styled.div`
   position: absolute;
@@ -62,12 +73,19 @@ const StyledLeft = styled.div<{ image: string | null }>`
   background-image: url(${(props) => (props.image ? props.image : thumbnail)});
   background-position: center;
   background-size: cover;
+  @media (max-width: 800px) {
+    height: 75%;
+  }
 `;
 const StyledRight = styled.div`
   margin-left: 42px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  @media (max-width: 800px) {
+    margin-left: 5px;
+    align-items: center;
+  }
 `;
 const StyledTitle = styled.h1`
   font-size: 20px;
@@ -159,7 +177,7 @@ export const ArticleModal: FC<Props> = ({
           e.stopPropagation();
         }}
       >
-        <StyledControlBox>
+        <StyledModalHeader>
           {controlEditButtonVisibility()}
           <StyledButton
             onClick={() => {
@@ -170,14 +188,8 @@ export const ArticleModal: FC<Props> = ({
           >
             close
           </StyledButton>
-        </StyledControlBox>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            height: '100%',
-          }}
-        >
+        </StyledModalHeader>
+        <StyledModalBody>
           <StyledLeft image={image} />
           <StyledRight>
             <StyledTitle>{title}</StyledTitle>
@@ -185,7 +197,7 @@ export const ArticleModal: FC<Props> = ({
             <StyledDate>{createdAt.toString()}</StyledDate>
             <StyledContent>{content}</StyledContent>
           </StyledRight>
-        </div>
+        </StyledModalBody>
         {article.author === user?.email ? (
           <DeleteButtonWrapper>
             <StyledButton onClick={handleClickDelete}>
