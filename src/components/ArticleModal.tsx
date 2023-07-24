@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect, useRef } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -14,7 +14,7 @@ import thumbnail from '../assets/image/thumbnail.jpg';
 const TRANSITION_DURATION = 0.2;
 const RESPONSIVE_BREAK_POINT = '1900px';
 
-const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
+const StyledModalBackground = styled.div<{ ismodalvisible: string }>`
   top: 0;
   left: 0;
   right: 0;
@@ -23,7 +23,7 @@ const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
   position: fixed;
   display: flex;
   background-color: rgba(0, 0, 0, 0.3);
-  opacity: ${(props) => (props.isModalVisible ? '1' : '0')};
+  opacity: ${(props) => (props.ismodalvisible === 'true' ? '1' : '0')};
   align-items: center;
   justify-content: center;
   transition: ${TRANSITION_DURATION.toString() + 's all ease-out 0s'};
@@ -120,6 +120,7 @@ export const ArticleModal: FC<Props> = ({
   const navigate = useNavigate();
   const { title, author, created_at: createdAt, content } = article;
   const user = useRecoilValue(userState);
+  const [windowScrollY, setWindowScrollY] = useState(window.scrollY);
 
   const date = new Date(createdAt);
   const year = date.getFullYear();
@@ -139,12 +140,21 @@ export const ArticleModal: FC<Props> = ({
   };
 
   useEffect(() => {
+    const scrollY = window.scrollY;
     document.body.style.overflowY = isModalVisible ? 'hidden' : 'visible';
     document.body.style.position = isModalVisible ? 'fixed' : 'inherit';
     document.body.style.width = isModalVisible ? '100%' : 'auto';
 
-    if (backgroundRef.current)
+    if (isModalVisible && backgroundRef.current && scrollY) {
+      setWindowScrollY(scrollY);
+      document.body.style.top = '-' + String(scrollY) + 'px';
+    } else if (!isModalVisible) {
+      window.scrollTo({ behavior: 'instant', top: windowScrollY });
+    }
+
+    if (backgroundRef.current) {
       backgroundRef.current.style.opacity = isModalVisible ? '1' : '0';
+    }
 
     const delayDisplayChange = setTimeout(
       () => {
@@ -179,7 +189,7 @@ export const ArticleModal: FC<Props> = ({
   return (
     <StyledModalBackground
       ref={backgroundRef}
-      isModalVisible={isModalVisible}
+      ismodalvisible={String(isModalVisible)}
       onClick={() => {
         setIsModalVisible(!isModalVisible);
       }}
