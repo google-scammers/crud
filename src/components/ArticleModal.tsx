@@ -110,6 +110,8 @@ export const ArticleModal: FC<Props> = ({
 
   useEffect(() => {
     document.body.style.overflowY = isModalVisible ? 'hidden' : 'visible';
+    document.body.style.position = isModalVisible ? 'fixed' : 'inherit';
+    document.body.style.width = isModalVisible ? '100%' : 'auto';
 
     if (backgroundRef.current)
       backgroundRef.current.style.opacity = isModalVisible ? '1' : '0';

@@ -11,6 +11,7 @@ import { TextButton } from 'components/TextButton';
 
 import { login } from '../apis/user';
 import { userState } from '../recoil/user';
+import { AxiosError } from 'axios';
 
 const InputContainer = styled.div`
   width: 80%;
@@ -53,8 +54,11 @@ export const Login = () => {
         setUser({ email: res.data.email });
         navigate('/crud');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (error instanceof AxiosError && error.response) {
+          const { status } = error.response;
+          if (status === 400) alert('이메일이나 비밀번호가 잘못되었습니다.');
+        } else alert('Unknown Server Error');
       });
   };
 

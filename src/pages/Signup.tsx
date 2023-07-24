@@ -9,6 +9,7 @@ import { SubmitButton } from 'components/SubmitButton';
 import { TextButton } from 'components/TextButton';
 
 import { signup } from '../apis/user';
+import { AxiosError } from 'axios';
 
 const InputContainer = styled.div`
   width: 80%;
@@ -48,10 +49,13 @@ const Signup = () => {
     console.log(formData);
     signup(formData)
       .then(() => {
-        navigate('/crud');
+        navigate('/crud/login');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (error instanceof AxiosError && error.response) {
+          const { response } = error;
+          if (response.status === 400) alert('이미 존재하는 계정입니다.');
+        } else alert('Unknown Server Error');
       });
   };
 

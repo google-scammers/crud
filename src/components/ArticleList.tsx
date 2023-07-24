@@ -119,8 +119,6 @@ export const ArticleList = () => {
       });
   }, [isDeleteArticle]);
 
-  console.log(isModalVisible);
-
   return (
     <Wrap>
       <Main ref={MainElement}>
