@@ -39,6 +39,7 @@ const StyledModal = styled.div`
   box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
   @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
     width: 500px;
+    height: 600px;
   }
 `;
 const StyledModalHeader = styled.div`
@@ -76,8 +77,8 @@ const StyledLeft = styled.div<{ image: string | null }>`
   border-radius: 10px;
   background-image: url(${(props) => (props.image ? props.image : thumbnail)});
   background-position: center;
-  /* background-size: cover; */
-  background-size: 100%;
+  background-size: cover;
+  /* background-size: 100%; */
   @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
     height: 75%;
   }
