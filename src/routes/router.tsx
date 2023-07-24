@@ -1,3 +1,4 @@
+import { getArticle } from 'apis/article';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { ArticleList } from 'components/ArticleList';
@@ -25,6 +26,11 @@ const authLogin = async () => {
   return null;
 };
 
+const getArticles = async () => {
+  const res = await getArticle();
+  return res.data;
+};
+
 export const router = createBrowserRouter([
   {
     path: 'crud',
@@ -34,6 +40,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <ArticleList />,
+        loader: getArticles,
       },
       {
         path: 'signup',

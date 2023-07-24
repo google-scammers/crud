@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { colors } from 'constants/colors';
@@ -76,10 +77,12 @@ export const ArticleList = () => {
 
   const cardWidth = 262;
 
+  const getLoaderArticles = useLoaderData() as ArticleType[];
+
   const [cardNumber, setCardNumber] = useState(
     Math.floor(window.innerWidth / cardWidth)
   );
-  const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [articles, setArticles] = useState<ArticleType[]>(getLoaderArticles);
   const [currentArticle, setCurrentArticle] = useState<ArticleType>();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isDeleteArticle, setIsDeleteArticle] = useState(false);
