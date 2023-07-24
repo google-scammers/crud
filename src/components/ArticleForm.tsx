@@ -125,7 +125,7 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
               setFormState({ ...formState, content: e.currentTarget.value });
             }}
           ></ContentsInput>
-          <FileInput type="file" />
+          <FileInput type="file" disabled />
         </InputWrap>
 
         <BtnWrap>
