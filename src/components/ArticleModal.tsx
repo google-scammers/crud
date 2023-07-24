@@ -12,6 +12,7 @@ import thumbnail from '../assets/image/thumbnail.jpg';
 
 // time unit = 200ms (0.2s)
 const TRANSITION_DURATION = 0.2;
+const RESPONSIVE_BREAK_POINT = '1900px';
 
 const StyledModalBackground = styled.div<{ isModalVisible: boolean }>`
   top: 0;
@@ -36,6 +37,9 @@ const StyledModal = styled.div`
   background-color: white;
   padding: 42px;
   box-shadow: 0px 0px 25px -6px rgba(0, 0, 0, 0.75);
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
+    width: 500px;
+  }
 `;
 const StyledModalHeader = styled.div`
   position: absolute;
@@ -45,14 +49,14 @@ const StyledModalHeader = styled.div`
   gap: 10px;
 `;
 const StyledModalBody = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  height: 100%;
-  @media (max-width: 800px) {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  &::-webkit-scrollbar {
+    display: none;
   }
+  scrollbar-width: none;
+
+  overflow: scroll;
+
+  height: 100%;
 `;
 const DeleteButtonWrapper = styled.div`
   position: absolute;
@@ -72,8 +76,9 @@ const StyledLeft = styled.div<{ image: string | null }>`
   border-radius: 10px;
   background-image: url(${(props) => (props.image ? props.image : thumbnail)});
   background-position: center;
-  background-size: cover;
-  @media (max-width: 800px) {
+  /* background-size: cover; */
+  background-size: 100%;
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
     height: 75%;
   }
 `;
@@ -82,8 +87,9 @@ const StyledRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  @media (max-width: 800px) {
+  @media (max-width: ${RESPONSIVE_BREAK_POINT}) {
     margin-left: 5px;
+    margin-top: 20px;
     align-items: baseline;
   }
 `;
@@ -120,8 +126,6 @@ export const ArticleModal: FC<Props> = ({
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const formattedDate = `${year}-${month}-${day}`;
-
-  /* console.log(formattedDate); */
 
   const handleClickDelete = () => {
     deleteArticle(article.id)
