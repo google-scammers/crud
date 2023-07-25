@@ -85,7 +85,7 @@ export const ArticleList = () => {
   const [isDeleteArticle, setIsDeleteArticle] = useState(false);
 
   const handleResize = () => {
-    console.log(MainElement.current);
+    // console.log(MainElement.current);
     if (MainElement.current) {
       const mainWidth = MainElement.current.offsetWidth;
 
@@ -103,6 +103,8 @@ export const ArticleList = () => {
     // 윈도우에 리사이즈 이벤트와 함수를 등록한다.
     window.addEventListener('resize', handleResize);
 
+    console.log('scrollTop:', document.body.scrollTop);
+
     // 언마운트 될 때 리턴문 실행된다(등록된 이벤트와 함수를 제거한다).
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -118,8 +120,6 @@ export const ArticleList = () => {
         console.log(err);
       });
   }, [isDeleteArticle]);
-
-  console.log(isModalVisible);
 
   return (
     <Wrap>

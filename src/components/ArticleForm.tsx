@@ -76,15 +76,17 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
   const location = useLocation();
-  const locationState = location.state as ArticleModifyData;
+  const locationState = location.state as ArticleModifyData | null;
 
-  const [formState, setFormState] = useState<ArticleModifyData>(locationState);
+  const [formState, setFormState] = useState<ArticleModifyData | undefined>(
+    locationState ? locationState : undefined
+  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    if (location.pathname === '/crud/modify/') {
+    if (location.pathname === '/crud/modify/' && formState) {
       modifyArticle(formState.id, formData)
         .then(() => {
           navigate('/crud');
@@ -114,6 +116,7 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
             placeholder="제목"
             value={formState && formState.title}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              formState &&
               setFormState({ ...formState, title: e.currentTarget.value })
             }
           />
@@ -122,10 +125,11 @@ export const ArticleForm: FC<PropsWithChildren> = () => {
             placeholder="내용"
             value={formState && formState.content}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-              setFormState({ ...formState, content: e.currentTarget.value });
+              if (formState)
+                setFormState({ ...formState, content: e.currentTarget.value });
             }}
           ></ContentsInput>
-          <FileInput type="file" />
+          <FileInput type="file" disabled />
         </InputWrap>
 
         <BtnWrap>
