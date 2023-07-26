@@ -6,7 +6,7 @@ import { colors } from 'constants/colors';
 import { getArticle } from '../apis/article';
 import thumbnail from '../assets/image/thumbnail.jpg';
 
-import { ArticleModal } from './ArticleModal';
+import { ArticleModal } from './ArticleModal/ArticleModal';
 
 const Main = styled.main`
   margin: 20px 2%;
